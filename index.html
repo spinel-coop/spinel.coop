@@ -19,7 +19,7 @@
       }
 
       h1, h2, h3 {
-        font-family: "National Forest", avenir, sans-serif;
+        font-family: avenir, sans-serif;
         text-align: center;
         margin-top: 5rem;
       }
@@ -40,11 +40,21 @@
       footer hr {
         margin: 3rem 0;
       }
+
+      @media (prefers-color-scheme: dark) {
+        img {
+          filter: grayscale(0.75) invert(1) brightness(2);
+          margin-bottom: 2rem;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <h1>Spinel</h1>
+    <h1>
+      <img width="100" src="img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="250" src="img/spinel.svg" alt="Spinel">
+    </h1>
 
     <p>Spinel is a cooperative of Ruby open source maintainers, inspired by <a href="https://geomys.org">Geomys</a> and founded by <a href="https://arko.net">André Arko</a>.</p>
 
