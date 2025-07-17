@@ -19,7 +19,6 @@
       }
 
       h1, h2, h3 {
-        font-family: avenir, sans-serif;
         text-align: center;
         margin-top: 5rem;
       }
@@ -28,13 +27,22 @@
         padding-top: 1rem;
       }
 
+      img {
+        margin-bottom: 2rem;
+      }
+
       .clients {
         padding: 0;
         list-style-type: none;
         display: flex;
-        flex-direction: row;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
         justify-content: center;
+        align-items: center;
+      }
+
+      footer {
+        margin-top: 6rem;
       }
 
       footer hr {
@@ -44,7 +52,6 @@
       @media (prefers-color-scheme: dark) {
         img {
           filter: grayscale(0.75) invert(1) brightness(2);
-          margin-bottom: 2rem;
         }
       }
     </style>
