@@ -1,0 +1,48 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: avenir, sans-serif;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  line-height: 1.6rem;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+p {
+  padding-top: 1rem;
+}
+
+img {
+  margin-bottom: 2rem;
+}
+
+.clients {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  margin-top: 6rem;
+}
+
+footer hr {
+  margin: 3rem 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  img {
+    filter: grayscale(0.75) invert(1) brightness(2);
+  }
+}
