@@ -43,8 +43,12 @@ aliases = ["/retainers"]
     the original Ruby version management tools
   </li>
   <li>
+    <a href="https://github.com/rubygems/rubygems"><code>rubygems</code></a>,
+    the Ruby standard library package manager
+  </li>
+  <li>
     <a href="https://bundler.io"><code>bundler</code></a>,
-    the Ruby language dependency manager
+    the Ruby standard library dependency manager
   </li>
   <li>
     <a href="https://rubygems.org"><code>rubygems.org</code></a>,
