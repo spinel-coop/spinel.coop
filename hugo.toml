@@ -2,5 +2,7 @@ baseURL = 'https://spinel.coop'
 languageCode = 'en-us'
 title = 'Spinel, the Ruby open source maintainers‘ co-op'
 
+theme = ["hugo-redirect"]
+
 [markup.goldmark]
 renderer.unsafe = true
