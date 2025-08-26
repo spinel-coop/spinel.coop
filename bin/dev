@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+set -x
+hugo server \
+  --renderToMemory \
+  --gc \
+  --buildDrafts \
+  --buildExpired \
+  --buildFuture \
+  --baseURL http://localhost:1313/ \
+  --bind 0.0.0.0 \
+  "$@"
