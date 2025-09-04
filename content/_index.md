@@ -79,6 +79,8 @@ aliases = ["/retainers"]
 
 <p><a href="https://sls.name"><b>Sam Stephenson</b></a> Sam Stephenson is a veteran Rubyist and member of the original Rails core team. He created Prototype.js, the Pow development server, and rbenv and ruby-build to manage Ruby versions. Later, he led development of the Trix rich text editor and Stimulus Javascript framework. He also invented the technology behind Turbo and Hotwire Native. In 2024, Sam released N₁₀, a Mac app to help people stay focused on short-term goals while they work. He lives in Mexico City where he likes to feed the squirrels.</p>
 
+<p><a href="https://segiddins.me"><b>Samuel Giddins</b></a> has spent the past decade building production-grade software supply chain tooling for multiple different language ecosystems. Besides being the security lead for RubyGems, Samuel has contributed to projects such as Sigstore, Bazel, and CocoaPods over the years. Samuel has spent enough time optimizing CI systems to be able to parse YAML in his head. Away from the computer, you can find Samuel skiing, traveling, and eating, often simultaneously.</p>
+
 <p>We&#39;d love to hear from you. You can reach us at <code>hello@</code> this domain.</p>
 
 <footer>
