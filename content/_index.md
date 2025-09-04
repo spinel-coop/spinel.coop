@@ -3,7 +3,7 @@ title = 'Home'
 date = 2023-01-01T08:00:00-07:00
 aliases = ["/retainers"]
 +++
-<p>Spinel is a cooperative of Ruby open source maintainers, inspired by <a href="https://geomys.org">Geomys</a> and founded by <a href="https://arko.net">André Arko</a> and <a href="https://kaspth.com">Kasper Timm Hansen</a>.</p>
+<p>Spinel is a cooperative of Ruby open source maintainers, inspired by <a href="https://geomys.org">Geomys</a> and founded by <a href="https://arko.net">André Arko</a>, <a href="https://segiddins.me">Samuel E. Giddins</a>, and <a href="https://kaspth.com">Kasper Timm Hansen</a>.</p>
 
 <blockquote>
   <blockquote>
