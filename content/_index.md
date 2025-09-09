@@ -13,7 +13,7 @@ aliases = ["/retainers"]
   </blockquote>
 </blockquote>
 
-<p>Spinel develops <a href="https://github.com/spinel-coop/rv"><code>rv</code></a>, the next-generation Ruby version manager and project tool, and offers retainers for core team experts who can unblock your in-house developers.</p>
+<p>Spinel develops <a href="https://github.com/spinel-coop/rv"><code>rv</code></a>, the next-generation Ruby version manager and project tool, and offers retainers for core team experts who can supercharge your in-house developers.</p>
 
 <p>Our maintainers have either created or been on the core teams of the open source behind every Ruby business:</p>
 
