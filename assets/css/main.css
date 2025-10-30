@@ -42,3 +42,10 @@ footer hr {
     filter: grayscale(0.75) invert(1) brightness(2);
   }
 }
+
+@media print {
+  body {
+    margin: 0 auto;
+    padding: 0;
+  }
+}
