@@ -4,7 +4,7 @@ date = 2023-01-01T08:00:00-07:00
 aliases = ["/retainers"]
 +++
 
-Spinel is a cooperative of Ruby open source maintainers, inspired by [Geomys](https://geomys.org) and founded by [André Arko](https://arko.net), [Samuel E. Giddins](https://segiddins.me), and [Kasper Timm Hansen](https://kaspth.com).
+Spinel is a cooperative of Ruby open source maintainers, inspired by [Geomys](https://geomys.org) and founded by [André Arko](https://arko.net), and [Kasper Timm Hansen](https://kaspth.com).
 
 > > **spi·nel** (spɪ'nɛl) **_n._**  
 > > **1** (mineralogy) Mixed oxides of magnesium and aluminium with cubic symmetry, used as gemstones. Some of the world's most famous gemstones are spinels, which were once thought to be rubies.  
@@ -42,8 +42,6 @@ If you're interested in a retainer, drop us a note at `hello@` this domain.
 [**Kasper Timm Hansen**](https://kaspth.com) was on the Rails core team from 2016-2022, is the top 14th contributor, authored major features and reviewed & merged thousands of contributor pull requests. These days Kasper’s focus is on helping teams upskill, as well as Domain Modeling for Rails apps — including inventing the [riffing technique](https://github.com/kaspth/riffing-on-rails) to do so. Kasper still pushes Rails forward with gems like [Oaken](https://github.com/kaspth/oaken), [ActiveRecord::AssociatedObject](https://github.com/kaspth/active_record-associated_object), [ActiveJob::Performs](https://github.com/kaspth/active_job-performs), and [ActionController::StashedRedirects](https://github.com/kaspth/action_controller-stashed_redirects).
 
 [**Sam Stephenson**](https://sls.name) is a veteran Rubyist and member of the original Rails core team. He created Prototype.js, the Pow development server, and rbenv and ruby-build to manage Ruby versions. Later, he led development of the Trix rich text editor and Stimulus Javascript framework. He also invented the technology behind Turbo and Hotwire Native. In 2024, Sam released N₁₀, a Mac app to help people stay focused on short-term goals while they work. He lives in Mexico City where he likes to feed the squirrels.
-
-[**Samuel Giddins**](https://segiddins.me) has spent the past decade building production-grade software supply chain tooling for multiple different language ecosystems. Besides being the security lead for RubyGems, Samuel has contributed to projects such as Sigstore, Bazel, and CocoaPods over the years. Samuel has spent enough time optimizing CI systems to be able to parse YAML in his head. Away from the computer, you can find Samuel skiing, traveling, and eating, often simultaneously.
 
 We'd love to hear from you. You can reach us at `hello@` this domain.
 

@@ -4,7 +4,7 @@ title = "Retainer Prospectus"
 
 Spinel is a cooperative of Ruby open source maintainers, founded by [André Arko](https://arko.net) and [Kasper Timm Hansen](https://kaspth.com), and focused on a portfolio of tools to increase developer productivity with Ruby and Ruby on Rails.
 
-André helped create Bundler 1.0 in 2009, and led the joint RubyGems and Bundler team from 2014 to 2025. Kasper was a member of the Rails core team from 2016 to 2022, and is the 14th all-time contributor. They are joined by [Samuel E. Giddins](https://segiddins.me/), a long-time member of the core teams for CocoaPods, Bundler, and RubyGems, as well as [Sam Stephenson](https://sls.name/), a member of the original Rails core team and creator of Prototype.js, rbenv & ruby-build, Trix, Turbo, and Stimulus.
+André helped create Bundler 1.0 in 2009, and led the joint RubyGems and Bundler team from 2014 to 2025. Kasper was a member of the Rails core team from 2016 to 2022, and is the 14th all-time contributor. They are joined by [Sam Stephenson](https://sls.name/), a member of the original Rails core team and creator of Prototype.js, rbenv & ruby-build, Trix, Turbo, and Stimulus.
 
 Our maintainers have either created or been on the core teams of the open source behind every Ruby business:
 
