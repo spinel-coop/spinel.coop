@@ -4,7 +4,7 @@ title = "Retainer Prospectus"
 
 Spinel is a cooperative of Ruby open source maintainers, founded by [André Arko](https://arko.net) and [Kasper Timm Hansen](https://kaspth.com), and focused on a portfolio of tools to increase developer productivity with Ruby and Ruby on Rails.
 
-André helped create Bundler 1.0 in 2009, and led the joint RubyGems and Bundler team from 2014 to 2025. Kasper was a member of the Rails core team from 2016 to 2022, and is the 14th all-time contributor. They are joined by [Samuel E. Giddins](https://segiddins.me/), a long-time member of the core teams for CocoaPods, Bundler, and RubyGems, as well as [Sam Stephenson](https://sls.name/), a member of the original Rails core team and creator of Prototype.js, rbenv & ruby-build, Trix, Turbo, and Stimulus.
+André helped create Bundler 1.0 in 2009, and led the joint RubyGems and Bundler team from 2014 to 2025. Kasper was a member of the Rails core team from 2016 to 2022, and is the 14th all-time contributor. They are joined by [Sam Stephenson](https://sls.name/), a member of the original Rails core team and creator of Prototype.js, rbenv & ruby-build, Trix, Turbo, and Stimulus.
 
 Our maintainers have either created or been on the core teams of the open source behind every Ruby business:
 
@@ -24,7 +24,7 @@ A Spinel _retainer_ offers organizations direct access to the expertise of our m
 
 <blockquote>
 <span style="background-color: #000; color: #fff;">
-Retaining us gets your team all the answers they need for a fraction of the cost of a single fully-loaded full-time engineer.
+Retaining us gets your team all the answers they need for a fraction of the cost of a single full-time engineer.
 </span>
 </blockquote>
 
@@ -34,8 +34,7 @@ The platinum retainer provides extensive and unlimited access to Spinel maintain
 
 - The Spinel maintainers will be available to your whole team through a dedicated Slack Connect channel. Expertise access is unlimited and can span from project issues, to upstream liaison, to adoption and deployment counseling, strategy and architecture support, Go dependency assessment, to other incident areas of expertise such as cryptography, static analysis, and performance.  
 
-  We encourage engineers at client organizations to think of the Spinel
-maintainers as another team at the company they can tap for advice.
+  We encourage engineers at client organizations to think of the Spinel maintainers as another team at the company they can tap for advice.
 
 - We will set up an introductory session for engineers to meet the maintainers, and yearly sync sessions to ensure everyone is aware of us as a resource.
 
@@ -52,6 +51,4 @@ $75,000 / year
 </span>
 </center>
 
-Spinel retainers renew automatically indefinitely, and are meant to be a long-term
-relationship, but are billed month to month with no lock-in. We have experience
-working with the procurement processes of companies from startups to Fortune 100.
+Spinel retainers renew automatically indefinitely, and are meant to be a long-term relationship, but are billed month to month with no lock-in. We have experience working with the procurement processes of companies from startups to Fortune 100.

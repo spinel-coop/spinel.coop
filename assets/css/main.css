@@ -12,11 +12,21 @@ body {
 
 h1, h2, h3 {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 img {
   margin-bottom: 2rem;
+}
+
+ol li::marker {
+  font-weight: bold;
+}
+
+sup {
+  vertical-align: top;
+  position: relative;
+  top: -0.4em;
 }
 
 .clients {
@@ -30,7 +40,7 @@ img {
 }
 
 footer {
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 
 footer hr {
