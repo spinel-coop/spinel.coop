@@ -23,7 +23,7 @@ We answer questions and work with your engineers to hone their skills.
 We help architect and plan, preventing outages and failures before they even happen.  
 We charge less than one salary to provide you an Engineering Efficiency team.
 
-Get started by [sending us an email](mailto:hello@spinel.coop).
+[Email us](mailto:hello@spinel.coop) to get started today.
 
 
 ### Our contributions
