@@ -13,15 +13,15 @@ aliases = ["/retainers"]
 
 Faster features, shorter tests, fewer incidents, and more frequent deploys. We've done that at companies like Gusto, 37Signals, and One Medical, and we can do it for you.
 
-With decades of experience, we can find you the right tool, cut off your research rabbit-holes, and level up your developers, at a fraction of the cost of an in-house team[<sup>1</sup>](#expensive).
+With decades of experience, we can find you the right tool, cut off your research rabbit-holes, and level up your developers. We can build the feedback loop of **speed**, **quality**, and **joy** that Ruby and Rails are famous for, at a fraction of the cost of an in-house team[<sup>1</sup>](#expensive).
 
 
 ### How it works
 
-We build best-in-class [open source tools](#our-contributions) that increase your team's productivity.  
-We answer questions and work with your engineers to hone their skills.  
-We help architect and plan, preventing outages and failures before they even happen.  
-We charge less than one salary to provide you an Engineering Efficiency team.
+- We build best-in-class [open source tools](#our-contributions) to increase your team's productivity.
+- We answer questions and work with your engineers to hone their skills.
+- We help architect to prevent outages and failures before they even happen.
+- For less than one salary, we multiply the output of every engineer.
 
 [Email us](mailto:hello@spinel.coop) to get started today.
 
