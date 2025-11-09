@@ -24,7 +24,7 @@ A Spinel _retainer_ offers organizations direct access to the expertise of our m
 
 <blockquote>
 <span style="background-color: #000; color: #fff;">
-Retaining us gets your team all the answers they need for a fraction of the cost of a single fully-loaded full-time engineer.
+Retaining us gets your team all the answers they need for a fraction of the cost of a single full-time engineer.
 </span>
 </blockquote>
 
@@ -34,8 +34,7 @@ The platinum retainer provides extensive and unlimited access to Spinel maintain
 
 - The Spinel maintainers will be available to your whole team through a dedicated Slack Connect channel. Expertise access is unlimited and can span from project issues, to upstream liaison, to adoption and deployment counseling, strategy and architecture support, Go dependency assessment, to other incident areas of expertise such as cryptography, static analysis, and performance.  
 
-  We encourage engineers at client organizations to think of the Spinel
-maintainers as another team at the company they can tap for advice.
+  We encourage engineers at client organizations to think of the Spinel maintainers as another team at the company they can tap for advice.
 
 - We will set up an introductory session for engineers to meet the maintainers, and yearly sync sessions to ensure everyone is aware of us as a resource.
 
@@ -52,6 +51,4 @@ $75,000 / year
 </span>
 </center>
 
-Spinel retainers renew automatically indefinitely, and are meant to be a long-term
-relationship, but are billed month to month with no lock-in. We have experience
-working with the procurement processes of companies from startups to Fortune 100.
+Spinel retainers renew automatically indefinitely, and are meant to be a long-term relationship, but are billed month to month with no lock-in. We have experience working with the procurement processes of companies from startups to Fortune 100.
