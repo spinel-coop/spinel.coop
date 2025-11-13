@@ -10,6 +10,7 @@ date = 2023-01-01T08:00:00-07:00
 - Optimize application boot times, shrinking the development feedback loop to make everyday work faster
 - Profile and target inefficient database queries, finding optimal indexes, schema adjustments, and other improvements
 - Reduce memory and CPU usage to deliver faster responses, with fewer outliers
+- Scale your app to 10x or 100x by systematically finding and resolving bottlenecks
 - Provide the plugins, extensions, and libraries to solve problems quickly, without rebuilding the world from scratch
 - Work with your team to offer documentation, training, and workshops on performance gotchas and patterns for speed
 
