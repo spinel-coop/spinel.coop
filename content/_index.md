@@ -30,17 +30,21 @@ With decades of experience, we can find you the right tool, cut off your researc
 
 Our team has spent years building the tools you use every day, and either created or has been on the core team of the open source projects behind every Ruby business:
 
--   [`rails`](https://rubyonrails.org), the Ruby web application framework
--   [`hotwire (turbo + stimulus)`](https://hotwired.dev), the default front-end framework for Rails
--   [`hotwire native`](https://native.hotwired.dev), a web-first framework for building native mobile apps
--   [`trix`](https://trix-editor.org), the rich-text WYSIWYG content editor for Rails
--   [`kredis`](https://github.com/rails/kredis), higher-level data structures built on redis
--   [`rbenv + ruby-build`](https://rbenv.org), the original Ruby version management tools
--   [`rubygems`](https://github.com/rubygems/rubygems), the Ruby standard library package manager
--   [`bundler`](https://bundler.io), the Ruby standard library dependency manager
--   [`rubygems.org`](https://rubygems.org), the Ruby language package registry
+- [`rails`](https://rubyonrails.org), the Ruby web application framework
+- [`hotwire (turbo + stimulus)`](https://hotwired.dev), the default front-end framework for Rails
+- [`hotwire native`](https://native.hotwired.dev), a web-first framework for building native mobile apps
+- [`trix`](https://trix-editor.org), the rich-text WYSIWYG content editor for Rails
+- [`kredis`](https://github.com/rails/kredis), higher-level data structures built on redis
+- [`rbenv + ruby-build`](https://rbenv.org), the original Ruby version management tools
+- [`rubygems`](https://github.com/rubygems/rubygems), the Ruby standard library package manager
+- [`bundler`](https://bundler.io), the Ruby standard library dependency manager
+- [`rubygems.org`](https://rubygems.org), the Ruby language package registry
 
-Our newest tool is [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager. 
+
+### Our tools
+
+- [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
+- [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
 
 
 ### Our team
