@@ -18,7 +18,7 @@ With decades of experience, we can find you the right tool, cut off your researc
 
 ### How it works
 
-- We build best-in-class [open source tools](#our-contributions) to increase your team's productivity.
+- We build best-in-class [open source tools](#our-background) to increase your team's productivity.
 - We answer questions and work with your engineers to hone their skills.
 - We help architect to prevent outages and failures before they even happen.
 - For less than one salary, we multiply the output of every engineer.
