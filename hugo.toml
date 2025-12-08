@@ -2,7 +2,13 @@ baseURL = 'https://spinel.coop'
 languageCode = 'en-us'
 title = 'Spinel, the Ruby open source maintainers‘ co-op'
 
+# add redirect support for /rv
 theme = ["hugo-redirect"]
 
+# allow html inside markdown files
 [markup.goldmark]
 renderer.unsafe = true
+
+# remove tags and categories
+disableKinds = ["taxonomy", "term"]
+[taxonomies]
