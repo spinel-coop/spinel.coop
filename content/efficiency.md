@@ -1,5 +1,6 @@
 +++
 title = 'Engineering Efficiency'
+draft = true
 +++
 
 # Engineering Efficiency
