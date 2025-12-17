@@ -2,7 +2,12 @@
   <h1>{{ .Title }}</h1>
   {{ .Content }}
   {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle | safeHTML }}</a></h2>
-    {{ .Summary }}
+    <h2>{{ .LinkTitle | safeHTML }}</h2>
+    <div>{{ .Summary }}</div>
+    {{- if .Truncated }}
+    <div style="text-align: right;">
+      <a href="{{ .RelPermalink }}">Keep reading &rarr;</a>
+    </div>
+    {{- end }}
   {{ end }}
 {{ end }}
