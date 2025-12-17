@@ -2,6 +2,10 @@ baseURL = 'https://spinel.coop'
 languageCode = 'en-us'
 title = 'Spinel, the Ruby open source maintainers‘ co-op'
 
+[outputs]
+home = ['html']
+section = ['html', 'rss']
+
 # add redirect support for /rv
 theme = ["hugo-redirect"]
 
