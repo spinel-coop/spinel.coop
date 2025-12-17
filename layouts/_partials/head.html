@@ -3,5 +3,6 @@
 <meta name="color-scheme" content="dark light">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title | plainify }}{{ end }}</title>
 <link rel="canonical" href="{{ .Permalink }}">
+{{ printf `<link rel="alternate" type="application/rss+xml" href="%sblog/index.xml" title=%q>` .Site.BaseURL .Site.Title | safeHTML }}
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
