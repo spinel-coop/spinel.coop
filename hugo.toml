@@ -6,6 +6,9 @@ title = 'Spinel, the Ruby open source maintainers‘ co-op'
 home = ['html']
 section = ['html', 'rss']
 
+[services.rss]
+limit = 50
+
 # add redirect support for /rv
 theme = ["hugo-redirect"]
 
