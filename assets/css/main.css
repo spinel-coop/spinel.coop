@@ -10,6 +10,10 @@ body {
   line-height: 1.6rem;
 }
 
+code {
+  font-family: courier, monospace;
+}
+
 h1, h2, h3 {
   text-align: center;
   margin-top: 3rem;
