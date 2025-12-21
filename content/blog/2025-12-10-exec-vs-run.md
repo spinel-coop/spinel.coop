@@ -2,6 +2,7 @@
 date = '2025-12-10T17:34:16-08:00'
 title = 'Why are <code>exec</code> and <code>run</code> so confusing?'
 slug = 'exec-vs-run'
+aliases = ['/news/exec-vs-run']
 +++
 
 While working on [rv](https://rv.dev), there's a specific question that has come up over and over again, in many different forms. In the simplest possible form, it boils down to:

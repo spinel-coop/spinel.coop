@@ -9,9 +9,6 @@ section = ['html', 'rss']
 [services.rss]
 limit = 50
 
-# add redirect support for /rv
-theme = ["hugo-redirect"]
-
 # allow html inside markdown files
 [markup.goldmark]
 renderer.unsafe = true
