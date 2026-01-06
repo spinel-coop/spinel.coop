@@ -33,6 +33,12 @@ sup {
   top: -0.4em;
 }
 
+.about-us {
+  margin-top: 3rem;
+  border: 1px solid;
+  padding: 1rem;
+}
+
 .clients {
   padding: 0;
   list-style-type: none;

@@ -8,5 +8,10 @@
   </div>
 
   {{ .Content }}
+
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+  <blockquote class="about-us">
+    At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and package manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+  </blockquote>
 {{ end }}
