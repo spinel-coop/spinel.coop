@@ -23,7 +23,8 @@ With decades of experience, we can find you the right tool, cut off your researc
 - We help architect to prevent outages and failures before they even happen.
 - For less than one salary, we multiply the output of every engineer.
 
-[Email us](mailto:hello@spinel.coop) to get started today.
+Get started by booking a [free initial planning session](https://savvycal.com/spinel/client).
+
 
 ### Our blog
 
