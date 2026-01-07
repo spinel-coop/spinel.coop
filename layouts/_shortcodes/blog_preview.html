@@ -1,0 +1,11 @@
+{{ range site.RegularPages | first 1 }}
+  <p>
+    <b>{{ .LinkTitle | safeHTML }}</b>
+  </p>
+  <div>{{ .Summary }}</div>
+  {{- if .Truncated }}
+  <div style="text-align: right;">
+    <a href="{{ .RelPermalink }}">Keep reading &rarr;</a>
+  </div>
+  {{- end }}
+{{ end }}

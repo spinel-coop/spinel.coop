@@ -25,6 +25,16 @@ With decades of experience, we can find you the right tool, cut off your researc
 
 [Email us](mailto:hello@spinel.coop) to get started today.
 
+### Our blog
+
+{{< blog_preview >}}
+
+
+### Our tools
+
+- [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
+- [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
+
 
 ### Our background
 
@@ -39,12 +49,6 @@ Our team has spent years building the tools you use every day, and either create
 - [`rubygems`](https://github.com/rubygems/rubygems), the Ruby standard library package manager
 - [`bundler`](https://bundler.io), the Ruby standard library dependency manager
 - [`rubygems.org`](https://rubygems.org), the Ruby language package registry
-
-
-### Our tools
-
-- [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
-- [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
 
 
 ### Our team
