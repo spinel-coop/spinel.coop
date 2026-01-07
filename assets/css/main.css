@@ -33,6 +33,10 @@ sup {
   top: -0.4em;
 }
 
+.hero {
+  text-decoration: none;
+}
+
 .about-us {
   margin-top: 3rem;
   border: 1px solid;
