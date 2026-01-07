@@ -1,6 +1,7 @@
 baseURL = 'https://spinel.coop'
 languageCode = 'en-us'
 title = 'Spinel, the Ruby open source maintainers‘ co-op'
+summaryLength = 20
 
 [outputs]
 home = ['html']
