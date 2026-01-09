@@ -6,7 +6,7 @@ slug = 'rv-clean-install'
 
 As part of our [quest to build a fast Ruby project tool](https://andre.arko.net/2025/08/25/rv-a-new-kind-of-ruby-management-tool/), we've been hard at work on the next step of project management: installing gems. As we've learned over the last 15 years of working on Bundler and RubyGems, package managers are really complicated! It's too much to try to copy all of rbenv, and ruby-build, and RubyGems, and Bundler, all at the same time.
 
-Since we can't ship everything at once, we spent some time discussing the first project management feature we should add after Ruby versions. Inspired by `npm` and `orogene`, we decided to build `clean-install`. Today, we're releasing the `rv clean-install` command as part of [`rv` version 0.4.](https://github.com/spinel-coop/rv/releases/tag/v0.4.0)
+Since we can't ship everything at once, we spent some time discussing the first project management feature we should add after Ruby versions. Inspired by `npm` and `orogene`, we decided to build `clean-install`. Today, we're releasing the `rv clean-install` command as part of [`rv` version 0.4.](https://github.com/spinel-coop/rv/releases/tag/v0.4.1)
 
 So, what is a clean install? In this case, clean means "from a clean slate". You can use `rv ci` to install the packages your project needs after a fresh checkout, or before running your tests in CI. It's useful by itself, and it's also concrete step towards managing a project and its dependencies.
 
