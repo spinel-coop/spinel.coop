@@ -1,19 +1,35 @@
 {{ define "main" }}
-  {{ partial "nav.html" }}
-  <h1>{{ .Title | safeHTML }}</h1>
+{{ partial "nav.html" }}
+<h1>{{ .Title | safeHTML }}</h1>
 
-  <div style="text-align: right">
-    {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-    {{ $dateHuman := .Date | time.Format ":date_long" }}
-    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+<div style="text-align: right">
+  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  {{ $dateHuman := .Date | time.Format ":date_long" }}
+  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+</div>
+
+{{ .Content }}
+
+
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+<blockquote class="about-us">
+  <p>
+    At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+    package
+    manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+  </p>
+
+  <div>
+    Subscribe for the latest on <a href="https://rv.dev"><code>rv</code></a> and our other
+    developer tools.
   </div>
-
-  {{ .Content }}
-
-
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
-
-  <blockquote class="about-us">
-    At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and package manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
-  </blockquote>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+    class="embeddable-buttondown-form">
+    <input type="email" name="email" placeholder="you@example.com">
+    <input type="hidden" value="1" name="embed">
+    <input type="hidden" name="tag" value="website">
+    <input type="submit" value="Subscribe">
+  </form>
+</blockquote>
 {{ end }}
