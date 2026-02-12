@@ -8,8 +8,9 @@
   <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
 </div>
 
+<section class="blog">
 {{ .Content }}
-
+</section>
 
 {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 
