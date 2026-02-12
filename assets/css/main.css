@@ -95,6 +95,11 @@ footer hr {
   margin-top: -3px;
 }
 
+.blog img {
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   img {
     filter: grayscale(0.75) invert(1) brightness(2);
