@@ -35,6 +35,8 @@ Get started by booking a [free initial planning session](https://savvycal.com/sp
 
 - [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
 - [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
+- [`oaken`](https://github.com/kaspth/oaken), replace slow factories & skip the maintenance burden of fixtures
+- [`brat`](https://codeberg.org/sstephenson/brat), a parallel TAP testing harness for the POSIX shell
 
 
 ### Our background
