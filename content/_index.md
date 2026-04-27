@@ -4,73 +4,60 @@ date = 2023-01-01T08:00:00-07:00
 aliases = ["/retainers"]
 +++
 
-> **spi·nel** (spɪ'nɛl) **_n._**
-> 1. (mineralogy) Mixed oxides of magnesium and aluminium with cubic symmetry, used as gemstones. Some of the world's most famous gemstones are spinels, which were once thought to be rubies.
-> 2. Open source maintainers obsessed with developer experience.
+## We make engineering teams more productive
 
+Faster features, fewer incidents, CI that doesn't kill you, and more frequent deploys. We've done that at companies like *Gusto*, *37Signals* & *One Medical*, and we can do it for you.
 
-## We make engineering teams more productive.
+With decades of experience, we can find you the right tool, cut off your research rabbit-holes, and level up your developers. We can build the feedback loop of *speed*, *quality*, and *joy* that Ruby and Rails are famous for, at a fraction of the cost of an in-house team.
 
-Faster features, shorter tests, fewer incidents, and more frequent deploys. We've done that at companies like Gusto, 37Signals, and One Medical, and we can do it for you.
+### Work with us
 
-With decades of experience, we can find you the right tool, cut off your research rabbit-holes, and level up your developers. We can build the feedback loop of **speed**, **quality**, and **joy** that Ruby and Rails are famous for, at a fraction of the cost of an in-house team[<sup>1</sup>](#expensive).
+We've helped build the [open source](#background) you're already using, and we're bringing all that knowledge to help your teams diagnose problems and come up with vastly simpler, faster solutions you can't find elsewhere.
 
+- We audit your codebase, giving you detailed reporting on where and what to fix.
+- We fix hair-on-fire slow CI and set you up so it doesn't happen again.
+- We help you diagnose and prevent outages and incidents.
 
-### How it works
+You work on your business problems, and let us get your developers unblocked.
 
-- We build best-in-class [open source tools](#our-background) to increase your team's productivity.
-- We answer questions and work with your engineers to hone their skills.
-- We help architect to prevent outages and failures before they even happen.
-- For less than one salary, we multiply the output of every engineer.
+Book a [free initial planning session](https://savvycal.com/spinel/client) or [send us an email today](mailto:hello@spinel.coop).
 
-Get started by booking a [free initial planning session](https://savvycal.com/spinel/client).
-
-
-### Our blog
-
-{{< blog_preview >}}
-
-
-### Our tools
+<h3 id="tools"><a href="#tools">Tools</a></h3>
 
 - [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
 - [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
 - [`oaken`](https://github.com/kaspth/oaken), vastly speed up your CI: replace slow factories & skip the maintenance burden of Rails’ fixtures
 - [`brat`](https://codeberg.org/sstephenson/brat), a parallel TAP testing harness for the POSIX shell
 
-
-### Our background
-
-Our team has spent years building the tools you use every day, and either created or has been on the core team of the open source projects behind every Ruby business:
-
-- [`rails`](https://rubyonrails.org), the Ruby web application framework
-- [`hotwire (turbo + stimulus)`](https://hotwired.dev), the default front-end framework for Rails
-- [`hotwire native`](https://native.hotwired.dev), a web-first framework for building native mobile apps
-- [`trix`](https://trix-editor.org), the rich-text WYSIWYG content editor for Rails
-- [`kredis`](https://github.com/rails/kredis), higher-level data structures built on redis
-- [`rbenv + ruby-build`](https://rbenv.org), the original Ruby version management tools
-- [`rubygems`](https://github.com/rubygems/rubygems), the Ruby standard library package manager
-- [`bundler`](https://bundler.io), the Ruby standard library dependency manager
-- [`rubygems.org`](https://rubygems.org), the Ruby language package registry
-
-
-### Our team
+<h3 id="team"><a href="#team">Team</a></h3>
 
 {{< include "team.md" >}}
 
+<h3 id="background"><a href="#background">Background</a></h3>
 
-### Why Spinel?
+We've spent collective decades building what you use every day. We've served on the core teams helping to steer, guide and move the projects forward. Hell, some of these we've even created!
 
-Multiply your developers' time. Work on business problems, not tooling problems.
+#### Backend
 
-Ship faster. [Send us an email today](mailto:hello@spinel.coop).
+- [`Rails`](https://rubyonrails.org)
+- [`rbenv + ruby-build`](https://rbenv.org)
+- [`RubyGems`](https://github.com/rubygems/rubygems)
+- [`Bundler`](https://bundler.io)
+- [`rubygems.org`](https://rubygems.org)
+- [`Kredis`](https://github.com/rails/kredis)
+
+#### Frontend
+
+- [`Hotwire (Turbo + Stimulus)`](https://hotwired.dev)
+- [`Hotwire Native`](https://native.hotwired.dev)
+- [`Trix`](https://trix-editor.org)
 
 <footer>
 
-- - -
+---
 
-<a name="expensive"></a>
-
-1.  As [Filippo Valsorda explained](https://words.filippo.io/geomys/#fn:buildbuy): Imagine you want to build specialized expertise in the functioning of an open source project internally. Even assuming you have enough interesting work to recruit and retain the right people, you will need to hire at least two Senior Software Engineers, or you lose all institutional knowledge as soon as one leaves. Really, to avoid refocusing on hiring upon a departure, you need three. You’re looking at north of a million dollars per year, fully loaded. It’s a classic build vs. buy. When you frame it like that, my contracts are _cheap_. [↩](#fn:expensive)
+> **spi·nel** (spɪ'nɛl) **_n._**
+> 1. (mineralogy) Mixed oxides of magnesium and aluminium with cubic symmetry, used as gemstones. Some of the world's most famous gemstones are spinels, which were once thought to be rubies.
+> 2. Open source maintainers obsessed with developer experience.
 
 </footer>

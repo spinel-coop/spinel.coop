@@ -3,17 +3,29 @@
 }
 
 body {
-  font-family: avenir, sans-serif;
+  font-family: avenir next, sans-serif;
   max-width: 40rem;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
   padding: 2rem;
-  line-height: 1.6rem;
+  line-height: 1.7rem;
+
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
 }
 
 nav {
   display: flex;
   justify-content: center;
   gap: 2rem;
+}
+
+ul:not(nav ul) {
+  padding-inline-start: 1em;
+  list-style-type: "* ";
+}
+
+a {
+  color: inherit;
 }
 
 code {
@@ -23,8 +35,11 @@ code {
 h1,
 h2,
 h3 {
-  text-align: center;
   margin-top: 3rem;
+
+  a {
+    text-decoration: underline;
+  }
 }
 
 img {
@@ -41,8 +56,22 @@ sup {
   top: -0.4em;
 }
 
+header:has(h1 .hero) {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  & h1 {
+    margin-block: 0;
+  }
+}
+
 .hero {
   text-decoration: none;
+
+  img {
+    margin-bottom: 0;
+  }
 }
 
 .about-us {
