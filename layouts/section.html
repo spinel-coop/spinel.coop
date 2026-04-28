@@ -1,5 +1,4 @@
 {{ define "main" }}
-  {{ partial "nav.html" }}
   {{ .Content }}
   {{ range .Pages }}
     <h2>{{ .LinkTitle | safeHTML }}</h2>
