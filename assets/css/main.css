@@ -3,7 +3,9 @@
 }
 
 body {
-  font-family: avenir next, sans-serif;
+  font-family:
+    avenir next,
+    sans-serif;
   max-width: 40rem;
   margin: 0 auto 2rem;
   padding: 2rem;
@@ -11,6 +13,12 @@ body {
 
   -webkit-font-smoothing: antialiased;
   text-wrap: pretty;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 nav {
@@ -102,12 +110,12 @@ footer hr {
   margin-bottom: 1.5rem;
 }
 
-.about-us input[type=email] {
+.about-us input[type="email"] {
   font-size: 14px;
   margin-top: 5px;
 }
 
-.about-us input[type=submit] {
+.about-us input[type="submit"] {
   display: inline-block;
   outline: 0;
   cursor: pointer;
@@ -139,5 +147,11 @@ footer hr {
   body {
     margin: 0 auto;
     padding: 0;
+  }
+}
+
+@media (max-width: 38rem) {
+  header {
+    flex-direction: column;
   }
 }
