@@ -1,5 +1,5 @@
 baseURL = 'https://spinel.coop'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Spinel, the Ruby open source maintainers‘ co-op'
 summaryLength = 20
 
