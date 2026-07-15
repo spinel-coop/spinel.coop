@@ -40,6 +40,11 @@ code {
   font-family: courier, monospace;
 }
 
+pre {
+  padding: 1rem 1.5rem;
+  overflow-x: scroll;
+}
+
 h1,
 h2,
 h3 {
