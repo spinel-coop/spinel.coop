@@ -1,5 +1,5 @@
 +++
-date = '2026-07-15T21:26:13-07:00'
+date = '2026-07-15'
 title = 'Factory Frustrations: Optimized for Isolation'
 slug = 'factory-frustrations-part-one'
 +++
