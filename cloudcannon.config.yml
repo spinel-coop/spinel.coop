@@ -6,6 +6,9 @@ collections_config:
     path: content
     icon: wysiwyg
     url: "/{slug}/"
+    glob:
+      - '!blog'
+      - '!includes'
     disable_add: false
     disable_add_folder: true
     disable_file_actions: false
