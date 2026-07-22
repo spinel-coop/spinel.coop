@@ -1,6 +1,5 @@
 +++
 title = "My New Post"
-slug = 'my-post'
 draft = true
 +++
 

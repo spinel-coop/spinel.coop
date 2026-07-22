@@ -22,6 +22,8 @@ collections_config:
         type: switch
         label: Draft
         comment: Drafts appear in previews but not the main site.
+    create:
+      path: '[relative_base_path]/{title|slugify}.[ext]'
     schemas:
       page:
         path: schemas/page.md
