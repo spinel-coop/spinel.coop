@@ -7,8 +7,8 @@ collections_config:
     icon: wysiwyg
     url: "/{slug}/"
     glob:
-      - '!blog'
-      - '!includes'
+      - '!blog/*'
+      - '!includes/*'
     disable_add: false
     disable_add_folder: true
     disable_file_actions: false
