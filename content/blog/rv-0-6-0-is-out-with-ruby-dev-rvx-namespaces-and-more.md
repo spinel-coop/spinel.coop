@@ -4,8 +4,6 @@ title = "rv 0.6.0 is out, with `ruby-dev`, `rvx @namespaces`, and more"
 slug = "rv-0.6.0-released"
 aliases = [ "/news/rv-0.6.0-released" ]
 +++
-# rv 0.6.0 is out, with \`ruby-dev\`, \`rvx @namespaces\`, and more
-
 We're running a bit behind on announcements, so here's our post about releasing `rv` version 0.6.<br><br>The headline features added to version 0.6 are daily releases of `ruby-dev`, adding namespace support to `rvx`, and supporting gem servers that require authentication, for projects that use Sidekiq Pro, Avo Pro, and the like. We also added a self-update command.
 
 ## \`ruby-dev\` daily releases
