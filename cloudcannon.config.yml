@@ -18,6 +18,31 @@ collections_config:
     disable_add: false
     disable_add_folder: true
     disable_file_actions: false
+    create:
+      extra_data:
+        filename: '{date|year}-{date|month}-{date|day}-{slug}'
+      path: '[relative_base_path]/{filename|slugify}.[ext]'
+    _inputs:
+      title:
+        type: text
+        label: Blog Title
+      slug:
+        type: text
+        label: URL Slug
+        comment: The URL of the post, e.g. /blog/<slug here>
+      date:
+        type: date
+        label: Publish date
+        comment: Posts with dates in the future will not be visible.
+      draft:
+        type: switch
+        label: Draft
+        comment: Drafts appear in previews but not the main site.
+    schemas:
+      blog:
+        path: schemas/blog.md
+        name: Blog Post
+        icon: post_add
   includes:
     path: content/includes
     glob:
