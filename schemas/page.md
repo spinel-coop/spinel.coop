@@ -1,8 +1,7 @@
 +++
-date = 2026-07-22
 title = "My New Post"
 slug = 'my-post'
 draft = true
 +++
 
-Blog post goes here!
+Page content goes here!

@@ -9,6 +9,27 @@ collections_config:
     disable_add: false
     disable_add_folder: true
     disable_file_actions: false
+    _inputs:
+      title:
+        type: text
+        label: Page Title
+        options:
+          required: true
+      slug:
+        type: text
+        label: URL Slug
+        comment: The URL of the post, e.g. /<slug here>
+        options:
+          required: true
+      draft:
+        type: switch
+        label: Draft
+        comment: Drafts appear in previews but not the main site.
+    schemas:
+      page:
+        path: schemas/page.md
+        name: Page
+        icon: post_add
   blog:
     path: content/blog
     icon: article
@@ -26,14 +47,22 @@ collections_config:
       title:
         type: text
         label: Blog Title
+        options:
+          required: true
       slug:
         type: text
         label: URL Slug
         comment: The URL of the post, e.g. /blog/<slug here>
+        options:
+          required: true
       date:
         type: date
         label: Publish date
+        instance_value: NOW
+        disable_instance_value_rehydration: true
         comment: Posts with dates in the future will not be visible.
+        options:
+          required: true
       draft:
         type: switch
         label: Draft
