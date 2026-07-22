@@ -5,7 +5,7 @@ collections_config:
   pages:
     path: content
     icon: wysiwyg
-    url: "/{slug}/"
+    url: "/[slug]/"
     glob:
       - '!blog/*'
       - '!includes/*'
@@ -16,12 +16,6 @@ collections_config:
       title:
         type: text
         label: Page Title
-        options:
-          required: true
-      slug:
-        type: text
-        label: URL Slug
-        comment: The URL of the post, e.g. /<slug here>
         options:
           required: true
       draft:
