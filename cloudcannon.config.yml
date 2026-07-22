@@ -5,38 +5,27 @@ collections_config:
   pages:
     path: content
     icon: wysiwyg
-    disable_url: false
+    url: "/{slug}/"
     disable_add: false
-    disable_add_folder: false
+    disable_add_folder: true
     disable_file_actions: false
   blog:
     path: content/blog
+    icon: article
+    url: "/blog/{slug}/"
     glob:
       - '!_index.md'
-    icon: event_available
-    disable_url: false
-    preview:
-      text:
-        - text:
-        - key:
-      subtext:
-      icon:
-      icon_color:
-      icon_background_color:
-      image:
-      metadata:
-      gallery:
     disable_add: false
-    disable_add_folder: false
+    disable_add_folder: true
     disable_file_actions: false
   includes:
     path: content/includes
     glob:
       - '!_index.md'
     icon: circles
-    disable_url: false
+    disable_url: true
     disable_add: false
-    disable_add_folder: false
+    disable_add_folder: true
     disable_file_actions: false
 _snippets_imports:
   hugo:
