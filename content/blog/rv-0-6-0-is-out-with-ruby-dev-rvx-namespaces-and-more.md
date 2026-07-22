@@ -1,5 +1,5 @@
 +++
-date = 2026-07-22T22:45:00.000Z
+date = 2026-07-22T20:00:00.000Z
 title = "rv 0.6.0 is out, with `ruby-dev`, `rvx @namespaces`, and more"
 slug = "rv-0.6.0-released"
 aliases = [ "/news/rv-0.6.0-released" ]
