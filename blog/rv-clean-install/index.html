@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>Announcing rv clean-install</title>
+<link rel="canonical" href="/blog/rv-clean-install/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1>Announcing <code>rv clean-install</code></h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-01-06T09:37:00&#43;07:00">January 6, 2026</time>
+</div>
+
+<section class="blog">
+<p>As part of our <a href="https://andre.arko.net/2025/08/25/rv-a-new-kind-of-ruby-management-tool/">quest to build a fast Ruby project tool</a>, we&rsquo;ve been hard at work on the next step of project management: installing gems. As we&rsquo;ve learned over the last 15 years of working on Bundler and RubyGems, package managers are really complicated! It&rsquo;s too much to try to copy all of rbenv, and ruby-build, and RubyGems, and Bundler, all at the same time.</p>
+<p>Since we can&rsquo;t ship everything at once, we spent some time discussing the first project management feature we should add after Ruby versions. Inspired by <code>npm</code> and <code>orogene</code>, we decided to build <code>clean-install</code>. Today, we&rsquo;re releasing the <code>rv clean-install</code> command as part of <a href="https://github.com/spinel-coop/rv/releases/tag/v0.4.1"><code>rv</code> version 0.4.</a></p>
+<p>So, what is a clean install? In this case, clean means &ldquo;from a clean slate&rdquo;. You can use <code>rv ci</code> to install the packages your project needs after a fresh checkout, or before running your tests in CI. It&rsquo;s useful by itself, and it&rsquo;s also concrete step towards managing a project and its dependencies.</p>
+<p>Even better, it lays a lot of the groundwork for future gem management functionality, including downloading, caching, and unpacking gems, compiling native gem extensions, and providing libraries that can be loaded by Bundler at runtime.</p>
+<p>While we don&rsquo;t (yet!) handle adding, removing, or updating gem versions, we&rsquo;re extremely proud of the progress that we&rsquo;ve made, and we&rsquo;re looking forward to improving <code>rv</code> based on your feedback.</p>
+<p>Try running <code>brew install rv; rv clean-install</code> today, and see how it goes. Is it fast? Slow? Are there errors? What do you want to see next? <a href="https://github.com/spinel-coop/rv/issues/new">Let us know what you think</a>.</p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>

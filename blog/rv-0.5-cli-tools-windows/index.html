@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>rv 0.5: CLI tools &#43; Windows</title>
+<link rel="canonical" href="/blog/rv-0.5-cli-tools-windows/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1><code>rv</code> 0.5: CLI tools + Windows</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-02-11T11:41:00-08:00">February 11, 2026</time>
+</div>
+
+<section class="blog">
+<p>For almost 6 months now, <a href="https://rv.dev/"><code>rv</code></a> has been installing Ruby versions in under a second, thanks to our precompiled Rubies. Today, we’re releasing <code>rv</code> 0.5, which brings that same focus on speed to installing Ruby on Windows, running scripts with <code>rv run</code>, and running and installing all sorts of gems and binaries via <code>rvx</code> and the <code>rv tool</code> commands.</p>
+<p>The new features in <code>rv</code> version 0.5 are:</p>
+<ol>
+<li>Windows support.</li>
+<li>New subcommand: <code>rv run</code></li>
+<li>New command: <code>rvx</code> (aka <code>rv tool run</code>)</li>
+<li>New subcommand family: <code>rv tool</code></li>
+<li>New subcommand: <code>rv selfupdate</code></li>
+</ol>
+<p>Let&rsquo;s look at each of these in more detail.</p>
+<h2 id="windows-support">Windows support</h2>
+<p>Thanks to the solid Windows support in the Rust language, the <code>rv</code> tool itself has always compiled on Windows, but the <a href="https://github.com/spinel-coop/rv-ruby">rv-ruby</a> project doesn’t create any precompiled Rubies for Windows (at least, not yet!) Without precompiled Windows Rubies, there wasn’t much point in making <code>rv</code> available on Windows. New contributor <a href="https://github.com/case">@case</a> changed all that, by adding support for the Windows Ruby binaries created by <a href="https://github.com/oneclick/rubyinstaller2">the RubyInstaller2 project</a>. Now that <code>rv</code> can install Ruby on Windows, it finally makes sense to release <code>rv</code> for Windows.</p>
+<p><img src="01-windows.png" alt=""></p>
+<p>To make installing <code>rv</code> on Windows easy, we’ve added a PowerShell one-line installer script to the installation instructions for every release. Check out our 0.5 release for Windows <a href="https://github.com/spinel-coop/rv/releases/tag/v0.5.0">right here</a>!</p>
+<p>One important caveat: if you use PowerShell, there is already a built-in <code>rv</code> command for removing environment variables. For anyone who wants to leave the existing PowerShell command in place, we offer two other options: running <code>rv.exe</code>, or by running our Windows-specific binary, named <code>rvw</code>. Either command will get you the same fast Ruby and gem tools, without conflicting with the PowerShell alias.</p>
+<p>Windows support has historically been a tricky situation for Bundler, so if you run into any problems or unexpected behavior, definitely <a href="https://github.com/spinel-coop/rv/issues/new">let us know</a>!</p>
+<h2 id="rv-run"><code>rv run</code></h2>
+<p>With a big boost from new contributor <a href="https://github.com/phromo">phromo</a>, we now have a top-level <code>rv run</code> command. What can you run with <code>rv run</code>? Anything! Well, anything that&rsquo;s in your <code>PATH</code> or any filename. That opens up a few great new use-cases.</p>
+<p>You can use <code>rv run irb</code> to immediately get an interactive Ruby prompt in under a second — even if Ruby wasn&rsquo;t previously installed (installing Ruby via <code>rv</code> is <em>fast</em>). If you have a Ruby script, you can use <code>rv run myscript.rb</code>, and we&rsquo;ll install Ruby and run your script with it.</p>
+<p>You can even use <code>rv</code> to make your Ruby scripts executable, whether or not Ruby is already installed! Just put <code>#!/usr/bin/env rv run ruby</code> as your shebang in any script, and it’ll become executable via an <code>rv</code>-provided Ruby.</p>
+<p><img src="02-rv-run.png" alt=""></p>
+<p>We&rsquo;re excited to see what everyone comes up with, now that it&rsquo;s easier to run Ruby scripts and commands than ever before.</p>
+<h2 id="rvx"><code>rvx</code></h2>
+<p>We’ve added a new command, <code>rvx</code>, which runs any command from a Ruby gem (we call these global gem-based CLIs &ldquo;tools&rdquo;, the same name used by <code>uv</code>). You can run <code>rvx rubocop</code> to run the latest version of rubocop, or <code>rvx rubocop@1.82</code> for a specific version. Give it a try — it’s very fast! The first time <code>rvx</code> runs a tool, it’ll download all required gems (in parallel), install them (in parallel), then run the tool. If you rerun the tool again, it’ll reuse all the cached downloads and installations, so it’ll execute near-instantly. Here’s an example:</p>
+<p><img src="03-rvx-rubocop.png" alt=""></p>
+<p>By default, <code>rvx</code> looks for an executable and a gem with the same name (e.g. <code>rvx nokogiri</code> runs the <code>nokogiri</code> binary provided by the nokogiri gem). If you wanted to instead run the <code>racc</code> binary that nokogiri provides, just run <code>rvx --from nokogiri racc</code>.</p>
+<p><img src="04-rvx-nokogiri.png" alt=""></p>
+<p>For almost 6 months now, <code>rv</code> has been using precompiled Rubies to install your Ruby versions in under a second. We hope we can bring that same focus on speed to downloading, installing and running gems via <code>rvx</code>. We’re very grateful to the Rust ecosystem, which lets us use awesome crates like <code>tokio</code> and <code>rayon</code> to download and install gems in parallel. We hope the rest of the Ruby ecosystem embraces parallelization — please talk to us if you’d like to collaborate on speeding up other Ruby workflows!</p>
+<h2 id="rv-tool"><code>rv tool</code></h2>
+<p>Under the hood, <code>rvx</code> is just an alias for <code>rv tool run</code>. When you run a tool, it’ll be downloaded and installed if you don’t already have it. You can manually install, uninstall and list your tools with <code>rv tool install</code>, <code>rv tool list</code> and <code>rv tool uninstall</code>.</p>
+<p><img src="05-rv-tool.png" alt=""></p>
+<h2 id="rv-selfupdate"><code>rv selfupdate</code></h2>
+<p>Thanks to new contributor <a href="https://github.com/duckinator">duckinator</a>, you can update <code>rv</code> using itself: <code>rv selfupdate</code> should Just Work. This is the first release with an <code>rv selfupdate</code> command, so to upgrade from 0.4 to 0.5 you’ll have to do it the old-fashioned way, by running the installer command from the releases page. But when we release 0.5.1, you’ll be able to run <code>rv selfupdate</code> to easily upgrade.</p>
+<p>In addition to these headlining features, we saw dozens of smaller improvements, fixes, optimizations, and generally making things work better and faster. Thank you to all of our contributors!</p>
+<p>Try out <code>rv</code> 0.5 today by running <code>brew install rv</code>, or using the <a href="https://github.com/spinel-coop/rv/releases/tag/v0.5.0">one-line installer script</a>.</p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>

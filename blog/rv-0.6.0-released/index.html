@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>rv 0.6.0 is out, with ruby-dev, rvx @namespaces, and more</title>
+<link rel="canonical" href="/blog/rv-0.6.0-released/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1>rv 0.6.0 is out, with <code>ruby-dev</code>, <code>rvx @namespaces</code>, and more</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-07-22T20:00:00&#43;00:00">July 22, 2026</time>
+</div>
+
+<section class="blog">
+<p>We&rsquo;re running a bit behind on announcements, so here&rsquo;s our post about releasing <code>rv</code> version 0.6.<br><br>The headline features added to version 0.6 are daily releases of <code>ruby-dev</code>, adding namespace support to <code>rvx</code>, and supporting gem servers that require authentication, for projects that use Sidekiq Pro, Avo Pro, and the like. We also added a self-update command.</p>
+<h2 id="ruby-dev-daily-releases"><code>ruby-dev</code> daily releases</h2>
+<p>The daily releases of <code>ruby-dev</code> are especially helpful if you want to test your application against the latest Ruby version that&rsquo;s currently in development — you don&rsquo;t have to download Ruby source code, or compile it, you can simply install a build of Ruby from git that&rsquo;s less than a day old, any time you want, by running <code>rv ruby install dev</code>. We run nightly builds of Ruby and publish them to GitHub Releases, where anyone using <code>rv</code> can try them out by spending a second or two installing. No more recompiling Ruby every time you want to try the latest — just try it.</p>
+<h2 id="rvx-namespaces">rvx namespaces</h2>
+<p>The second change helps anyone trying to use <code>rvx</code> to run CLI tools from gems. Before, it was possible to run <code>rvx gist</code> and everything would work as expected. However, gem servers with namespaces, like <a href="https://gem.coop">gem.coop</a>, didn&rsquo;t have a way to instantly run gems from a namespace. Now, it&rsquo;s as easy as <code>rvx @indirect/card</code> to immediately run the CLI tool from the gem named <code>card</code> in the <a href="https://gem.coop">gem.coop</a> namespace <code>@indirect</code>.</p>
+<h2 id="server-authentication-support">server authentication support</h2>
+<p>On the gem installation side of things, we built support for server authentication. That means <code>rv</code> can now install Gemfiles that use the private gem servers for Sidekiq Pro and Avo Pro, or any Gemfile that uses an entirely private authenticated gem server.</p>
+<h2 id="rv-self-update"><code>rv self-update</code></h2>
+<p>Finally, we added a self-update command. Many of our users install using Homebrew, and get updates automatically as part of Homebrew&rsquo;s updating system. For everyone else installing <code>rv</code> directly, the built-in self-update means that you don&rsquo;t have to re-run the installer every time there&rsquo;s a new version. Just run <code>rv selfupdate</code> to get the latest version, once you&rsquo;ve installed 0.6.0 or higher at least once.</p>
+<h2 id="more-version-60-updates">more version 6.0 updates</h2>
+<p>This version also includes dozens of bugfixes, and several significant compatibility improvements when working with Bundler configuration and lockfiles. Check out <a href="https://github.com/spinel-coop/rv/blob/main/CHANGELOG.md#rv-060-15-june-2026">the changelog</a> for the full list of all 43 changes.<br><br>We&rsquo;re continuing our work on installing full <code>Gemfile</code>s, as well as adding additional features to make <code>rv</code> the best way to use Ruby and gems. If you&rsquo;d like to help test our changes, give us feedback about how <code>rv</code> could be better, or even help us implement new features, we&rsquo;d love to have your help. Head over to <a href="https://rv.dev">rv.dev</a> to get started, and we&rsquo;ll see you soon!</p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>

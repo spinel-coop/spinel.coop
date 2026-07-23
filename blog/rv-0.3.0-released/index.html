@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>rv 0.3.0 released</title>
+<link rel="canonical" href="/blog/rv-0.3.0-released/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1>rv 0.3.0 released</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2025-12-08T01:24:54-08:00">December 8, 2025</time>
+</div>
+
+<section class="blog">
+<p>We&rsquo;re excited to announce <code>rv</code> version 0.3.0 <a href="https://github.com/spinel-coop/rv/releases/v0.3.0">has been released</a>.</p>
+<p>Highlights include support for Ruby versions 3.2.x, 3.5.0-preview1, and 4.0.0-preview2, as well as automatic Ruby installation during the <code>rv ruby run</code> command. We also added support for <code>.tool-versions</code> files, which are also used by the <a href="https://asdf-vm.com">asdf</a> and <a href="https://mise.jdx.dev">mise</a> tools.</p>
+<p>Just for fun, we also added the oldest version of Ruby that has released source code: 0.49! If you&rsquo;d like to try it, there are some <a href="https://github.com/sampersand/ruby-0.49?tab=readme-ov-file#sample-program">example scripts</a> available in the <a href="https://github.com/sampersand/ruby-0.49">repo where @sampersand modernized the code</a>.</p>
+<ul>
+<li>Make <code>ruby pin</code> reject invalid versions (<a href="https://github.com/spinel-coop/rv/pull/223">https://github.com/spinel-coop/rv/pull/223</a>, @deivid-rodriguez)</li>
+<li>Test against Arch Linux (<a href="https://github.com/spinel-coop/rv/pull/193">https://github.com/spinel-coop/rv/pull/193</a>, @case)</li>
+<li>Support Ruby preview releases (<a href="https://github.com/spinel-coop/rv/pull/201">https://github.com/spinel-coop/rv/pull/201</a>, @indirect)</li>
+<li>Support Ruby 0.49 (<a href="https://github.com/spinel-coop/rv/pull/189">https://github.com/spinel-coop/rv/pull/189</a>, @indirect)</li>
+<li>Install Ruby during <code>rv ruby run</code> (<a href="https://github.com/spinel-coop/rv/pull/182">https://github.com/spinel-coop/rv/pull/182</a>, @adamchalmers)</li>
+<li>Sign macOS binaries (<a href="https://github.com/spinel-coop/rv/pull/179">https://github.com/spinel-coop/rv/pull/179</a>, @indirect)</li>
+<li>Support SOCKS Proxy configuration (<a href="https://github.com/spinel-coop/rv/pull/175">https://github.com/spinel-coop/rv/pull/175</a>, @indirect)</li>
+<li>Support <code>.tool-versions</code> file for Ruby version (<a href="https://github.com/spinel-coop/rv/pull/172">https://github.com/spinel-coop/rv/pull/172</a>, @indirect)</li>
+<li>Add configuration for Nushell (<a href="https://github.com/spinel-coop/rv/pull/170">https://github.com/spinel-coop/rv/pull/170</a>, @indirect)</li>
+<li>Fix fish auto-switch when shell launches (<a href="https://github.com/spinel-coop/rv/pull/165">https://github.com/spinel-coop/rv/pull/165</a>, @Mado13)</li>
+<li>Add <code>rv cache prune</code> (<a href="https://github.com/spinel-coop/rv/pull/164">https://github.com/spinel-coop/rv/pull/164</a>, @savechina)</li>
+<li>Add <code>rv ruby uninstall</code> (<a href="https://github.com/spinel-coop/rv/pull/153">https://github.com/spinel-coop/rv/pull/153</a>, @savechina)</li>
+<li>Add <code>rv ruby dir</code> (<a href="https://github.com/spinel-coop/rv/pull/150">https://github.com/spinel-coop/rv/pull/150</a>, @savechina)</li>
+</ul>
+<p>Special thanks to our new contributors @savechina, @Mado13, @case, and @deivid-rodriguez!</p>
+<p>Install <code>rv</code> by running <code>brew install rv</code>, or directly from <a href="https://github.com/spinel-coop/rv/releases/">releases on GitHub</a>.</p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>Factory Frustrations: Optimized for Isolation</title>
+<link rel="canonical" href="/blog/factory-frustrations-part-one/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1>Factory Frustrations: Optimized for Isolation</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-07-15T00:00:00&#43;00:00">July 15, 2026</time>
+</div>
+
+<section class="blog">
+<p>When Rails developers write tests, part of that process is to arrange test data in a certain shape, in order to make assertions about the database state and domain. For example: does this active account have access to this feature they’re supposed to? Do we correctly ensure a cancelled account does not? And so on.</p>
+<p>Rails’ default approach to supplying test data is <em>database fixtures</em> written in YAML. With fixtures, you manually write out data and relationships in N files for N associations. Fixtures prioritize speed of running tests, but many Rails developers, myself included, find the approach cumbersome and clunky to work with. The tradeoff often doesn’t feel worth the cost.</p>
+<p>A popular alternative to fixtures is <em>factories</em>, primarily via the FactoryBot gem. With factories you don’t focus so much on relationships but just the object data for each record. Factories are easier to write than fixtures: there’s just less to think about to get started. It’s easier with factories to test your codebase, particularly during the greenfield phase.</p>
+<p>However, as the app grows and the codebase has hundreds of models, controllers and test files, the benefits of factories can start to hinder you more than help. In my experience, test suites using factories become slow and confusing, with few affordances for developing shared language within teams.</p>
+<p>In this series, I&rsquo;ll go over issues I&rsquo;ve seen with factory-heavy test suites and what I find difficult about the constraints they impose. It&rsquo;s based on my decade of using factories at jobs and in client codebases.</p>
+<h3 id="your-test-setups-topology">Your Test Setup’s Topology</h3>
+<p><img src="01-factories-chart.jpg" alt=""></p>
+<p>Factories have a local-first approach where each test case is isolated, and any test data scenario is set up from scratch each time. It’s super easy to write <code>user = create(:user)</code> when you need a user for your test, but now that test has to wait for everything about a user to be created from scratch.</p>
+<p>On top of the speed issues, this strategy makes your test data setup scattershot and spread across many test files. Within each test file, much of the setup is overall similar but slightly different. This makes it really difficult to spot what’s important or what’s just incidental.</p>
+<p>That adds cognitive load when you’re trying to update a test file. You have to learn the bespoke setup pretty much from scratch each time you revisit the file. Moreover, what you learn in one file doesn’t apply to another because it has its own slightly different setup.</p>
+<p>Let’s contrast with the fixtures approach. With fixtures we’d have a base set of test data that’s seeded once ahead of time, while still allowing for local modifications as needed. It’s annoying to visit a separate `users.yml` file every time you need to make an adjustment to the base user, but you can write `user = users(:one)` in your test and have a user without spending any time in the test on creating that user.</p>
+<p>While fixtures are more difficult at first, over time you recoup that investment because you’re working with named data sets. I have my own issues with fixtures, but we don’t have time to go into that today. I’ll explore more of the ways fixtures can help or hurt you in a later post.</p>
+<h3 id="what-you-can-do">What you can do</h3>
+<p>Rather than trap yourself with a separate factory that has to run for every test, or YAML files that might fail validations or require editing multiple files for every association, you can get the best of both worlds by building fixtures once in regular Ruby code.</p>
+<p>This strategy has been gaining mindshare lately in the Ruby community, with multiple gems now implementing this pattern. My own gem <a href="https://gem.coop/@kaspth/oaken"><em>Oaken</em></a> was born directly from the pains of working with fixtures and factories after they have grown beyond what’s manageable.</p>
+<p>Using Oaken, you get a factory-like interface for creating your records, but you get fixture-like speed when running your tests, since the records are seeded once ahead of time exactly like fixtures.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># db/seeds/accounts/spinel.rb  </span>
+</span></span><span style="display:flex;"><span>account <span style="color:#f92672">=</span> accounts<span style="color:#f92672">.</span>create <span style="color:#e6db74">:spinel</span>, name: <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#66d9ef">Spinel</span> <span style="color:#66d9ef">Cooperative</span><span style="color:#960050;background-color:#1e0010">”</span>  
+</span></span><span style="display:flex;"><span>users<span style="color:#f92672">.</span>admin<span style="color:#f92672">.</span>create <span style="color:#e6db74">:spinel_kasper</span>, name: <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#66d9ef">Kasper</span><span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#e6db74">accounts</span>: <span style="color:#f92672">[</span>account<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># test/models/user_test.rb  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_user_name</span>  
+</span></span><span style="display:flex;"><span>  assert_equal <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#66d9ef">Kasper</span><span style="color:#960050;background-color:#1e0010">”</span>, users<span style="color:#f92672">.</span>spinel_kasper<span style="color:#f92672">.</span>name  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>  
+</span></span></code></pre></div><p>All the speed of fixtures, all the ease of factories. Easy.</p>
+<p>I have a lot more thoughts about both factories and fixtures, based on my work with some of the most famous Rails apps. There wasn’t room to fit everything today, but I’ll be back soon with more.</p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>

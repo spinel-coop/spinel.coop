@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>Why are exec and run so confusing?</title>
+<link rel="canonical" href="/blog/exec-vs-run/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.1b709d17703aff709e072784bf9a91490444625126cb11409a760bc03192724c.css" integrity="sha256-G3CdF3A6/3CeByeEv5qRSQREYlEmyxFAmnYLwDGSckw=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1>Why are <code>exec</code> and <code>run</code> so confusing?</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2025-12-10T17:34:16-08:00">December 10, 2025</time>
+</div>
+
+<section class="blog">
+<p>While working on <a href="https://rv.dev">rv</a>, there&rsquo;s a specific question that has come up over and over again, in many different forms. In the simplest possible form, it boils down to:</p>
+<blockquote>
+<p>What is the difference between <code>rv exec</code> and <code>rv run</code>? Why have both?</p>
+</blockquote>
+<p>We haven&rsquo;t finished implementing either <code>rv exec</code> or <code>rv run</code> yet, but every time one or the other comes up in a conversation, everything instantly becomes more confusing.</p>
+<p>This post will summarize the history of <code>exec</code> and <code>run</code> in Bundler, npm, Cargo, and uv. Once we have the history laid out, we can take a look at what we plan to do in rv, and you can <a href="https://github.com/spinel-coop/rv/discussions/235">give us your feedback</a>.</p>
+<h2 id="bundler-exec">Bundler <code>exec</code></h2>
+<p>Bundler manages project-specific packages, but not generally available &ldquo;global&rdquo; commands. Project-specific packages installed with Bundler can include their own commands.</p>
+<p>While working on Bundler 1.0, we needed a standard way to do something new: run commands completely scoped inside a project, rather than scoped to the entire Ruby installation on the current machine. We tried both a wrapper command (<code>bundle exec COMMAND</code>) and generating dedicated scripts in the project&rsquo;s <code>bin/</code> directory. With binstubs, you could run <code>bin/rake</code> to get the project rake, and <code>rake</code> to get the global rake.</p>
+<p>I personally preferred the binstub approach, but it was <code>bundle exec</code> that ultimately became the popular way to use commands inside your project. My theory is that it won because you can use it to run any command, including <code>ruby</code>, or <code>bash</code>, or anything else you want.</p>
+<h2 id="rubygems-exec">RubyGems <code>exec</code></h2>
+<p>Somewhat confusingly (inspired by the <code>npm exec</code> command explained below) there is a separate <code>gem exec</code> command that is not related to Bundler and instead installs and runs a command from a package. RubyGems only manages global packages and commands, so <code>gem exec</code> is more of a convenience to make it easier to globally install and run a package with just one command.</p>
+<h2 id="npm-run-and-exec">npm <code>run</code> and <code>exec</code></h2>
+<p>npm manages both project-specific and global packages, and can install any package so its commands are available either only within a project or globally across every project that uses the same version of Node.</p>
+<p>The project-focused design of npm expects commands from project packages to be run by first adding the command to <code>package.json</code> in the <code>script</code> section, and the run via <code>npm run SCRIPT</code>. This is even more inconvenient than Bundler&rsquo;s binstubs, and so I think there was pent-up demand to be able to &ldquo;just run a command directly&rdquo;. That was eventually provided by <code>npm exec</code> and its alias <code>npx</code>.</p>
+<p>The <code>npx COMMAND</code> setup makes it very easy to run any command, whether the package is in the local project or not, whether a script is set up or not, and even whether the package is installed at all or not. Simply running the command is enough to install the needed package and run its command.</p>
+<p>It&rsquo;s especially helpful to have <code>npx</code> available when you need to create a new project by running an npm package, since it&rsquo;s a huge pain to create a project and install a package and set up a script just so you can run the package to overwrite your project. The most popular example of this I am aware of is <code>npx create-react-app</code>, but it&rsquo;s a popular idiom for many packages that contain commands.</p>
+<h2 id="cargo-run-and-install">Cargo <code>run</code> and <code>install</code></h2>
+<p>Cargo is simalarly a package manager, but unlike Ruby and Node, project-level packages do not include commands, and package commands are installed globally. Library packages are added to a project with <code>cargo add</code>, while command packages are installed globally with <code>cargo install</code>. Once a package is installed globally, it can simply be available on your <code>$PATH</code>, and Cargo no longer has to be involved in running it.</p>
+<p>The <code>cargo run</code> command is extremely limited in scope, and only allows you to build and run a binary created by your own project &ndash; it does not work to run commands from packages, either project-local or global.</p>
+<h2 id="uv-exec-and-run">uv <code>exec</code> and <code>run</code></h2>
+<p>In uv, the <code>exec</code> command seems to be most strongly inspired by <code>npm exec</code>, including having its own short alias of <code>uvx</code>. The <code>uv exec</code> command is exclusively for running commands directly from packages, automatically installing them if necessary. To give an example, that means you can use <code>uv exec github-backup</code> to install and run the github-backup command from the Python package named github-backup, whether or not that packge is included in your current project.</p>
+<p>Conversely, the <code>uv run</code> command is closer to <code>bundle exec</code>: it installs and configures Python, installs project packages if inside a project, and then runs a command from <code>$PATH</code> or runs a file. That means <code>uv run</code> can be used for both <code>uv run bash</code> to get a shell with only your project&rsquo;s Python and packages, and can also be used as <code>uv run myscript.py</code> to run a script file directly.</p>
+<h2 id="summary">Summary</h2>
+<p><code>bundle exec</code> runs:</p>
+<ul>
+<li>commands created by your package</li>
+<li>commands from project packages (like <code>bundle exec rails</code>)</li>
+<li>commands from $PATH (like <code>bundle exec bash</code>)</li>
+<li>scripts from files (like <code>bundle exec ./myscript.rb</code>)</li>
+</ul>
+<p><code>npm run</code> runs:</p>
+<ul>
+<li>project-defined script commands (like <code>npm run my-project-script</code>), which can call:
+<ul>
+<li>commands from project packages (like <code>generate_pdf.js</code>)</li>
+<li>commands from $PATH (like <code>bash</code>)</li>
+<li>scripts from files (like <code>./myscript.js</code>)</li>
+</ul>
+</li>
+</ul>
+<p><code>npm exec</code> installs and runs:</p>
+<ul>
+<li>non-project commands from any package (like <code>npx create-react app</code>)</li>
+</ul>
+<p><code>cargo run</code> builds and runs:</p>
+<ul>
+<li>commands created by your package</li>
+</ul>
+<p><code>uv run</code> installs python and any project packages, then runs:</p>
+<ul>
+<li>commands from project packages (like <code>uv run datasette</code>)</li>
+<li>commands from $PATH (like <code>uv run python</code>)</li>
+<li>scripts from files (like <code>uv run ./myscript.py</code>)</li>
+<li>project-defined script commands (like <code>uv run my-project-script</code>), which can call:
+<ul>
+<li>commands from project packages (like <code>github-backup</code>)</li>
+<li>commands from $PATH (like <code>bash</code>)</li>
+<li>scripts from files (like <code>./myscript.py</code>)</li>
+</ul>
+</li>
+</ul>
+<p><code>uv exec</code> installs python and the named package, then runs:</p>
+<ul>
+<li>non-project commands from any package (like <code>uv exec github-backup</code>)</li>
+</ul>
+<h2 id="the-question-for-rv">The question for <code>rv</code></h2>
+<p>With all of that background now set up, what should <code>rv exec</code> do? What should <code>rv run</code> do?</p>
+<p>To be the most like Bundler, we should use <code>rv exec</code> to run commands for a project. To be the most like <code>npm</code> and <code>uv</code>, we should use <code>rv exec</code> to install and run a single package with a command.</p>
+<p>Today, we&rsquo;re leaning towards an option that includes all of the useful functionality from every command above, and aligns Ruby tooling with JS tooling and Python tooling:</p>
+<p><code>rv run</code> installs ruby and any project packages, then runs:</p>
+<ul>
+<li>commands from project packages (like <code>rv run rspec</code>)</li>
+<li>commands from $PATH (like <code>rv run bash</code>)</li>
+<li>scripts from files (like <code>rv run ./myscript.rb</code>)</li>
+<li>project-defined script commands (like <code>rv run my-project-script</code>), which can call:
+<ul>
+<li>commands from project packages (like <code>rspec</code>)</li>
+<li>commands from $PATH (like <code>bash</code>)</li>
+<li>scripts from files (like <code>./myscript.rb</code>)</li>
+</ul>
+</li>
+</ul>
+<p><code>rv exec</code> installs ruby and the named package, then runs:</p>
+<ul>
+<li>non-project commands from any package (like <code>rv exec rails</code>)</li>
+</ul>
+<p>If we try to combine those two commands into one command, we quickly run into the ambiguity that has been so frustrating to handle in Bundler for all of these years: if you <code>rv run rake</code>, do you want the global rake package? Or do you want the project-local rake package? How can we know which you want?</p>
+<p>In my opinion, <code>uv</code> solves this relatively elegantly by having <code>uvx</code> always run a package globally, and <code>uvr</code> always run a package locally inside the current project, if one exists.</p>
+<p>What do you think? <a href="https://github.com/spinel-coop/rv/discussions/235">Let us know in the GitHub discussion about this post.</a></p>
+
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>
