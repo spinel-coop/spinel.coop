@@ -40,7 +40,7 @@
   </header>
   <main>
     
-<h1>Factory Frustrations: Optimized for Isolation</h1>
+<h1 data-editable="text" data-prop="title">Factory Frustrations: Optimized for Isolation</h1>
 
 <div style="text-align: right">
   
@@ -49,7 +49,8 @@
 </div>
 
 <section class="blog">
-<p>When Rails developers write tests, part of that process is to arrange test data in a certain shape, in order to make assertions about the database state and domain. For example: does this active account have access to this feature they’re supposed to? Do we correctly ensure a cancelled account does not? And so on.</p>
+  <editable-text data-prop="@content">
+    <p>When Rails developers write tests, part of that process is to arrange test data in a certain shape, in order to make assertions about the database state and domain. For example: does this active account have access to this feature they’re supposed to? Do we correctly ensure a cancelled account does not? And so on.</p>
 <p>Rails’ default approach to supplying test data is <em>database fixtures</em> written in YAML. With fixtures, you manually write out data and relationships in N files for N associations. Fixtures prioritize speed of running tests, but many Rails developers, myself included, find the approach cumbersome and clunky to work with. The tradeoff often doesn’t feel worth the cost.</p>
 <p>A popular alternative to fixtures is <em>factories</em>, primarily via the FactoryBot gem. With factories you don’t focus so much on relationships but just the object data for each record. Factories are easier to write than fixtures: there’s just less to think about to get started. It’s easier with factories to test your codebase, particularly during the greenfield phase.</p>
 <p>However, as the app grows and the codebase has hundreds of models, controllers and test files, the benefits of factories can start to hinder you more than help. In my experience, test suites using factories become slow and confusing, with few affordances for developing shared language within teams.</p>
@@ -76,6 +77,7 @@
 </span></span></code></pre></div><p>All the speed of fixtures, all the ease of factories. Easy.</p>
 <p>I have a lot more thoughts about both factories and fixtures, based on my work with some of the most famous Rails apps. There wasn’t room to fit everything today, but I’ll be back soon with more.</p>
 
+  </editable-text>
 </section>
 
 

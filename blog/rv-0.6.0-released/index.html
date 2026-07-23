@@ -40,7 +40,7 @@
   </header>
   <main>
     
-<h1>rv 0.6.0 is out, with <code>ruby-dev</code>, <code>rvx @namespaces</code>, and more</h1>
+<h1 data-editable="text" data-prop="title">rv 0.6.0 is out, with <code>ruby-dev</code>, <code>rvx @namespaces</code>, and more</h1>
 
 <div style="text-align: right">
   
@@ -49,7 +49,8 @@
 </div>
 
 <section class="blog">
-<p>We&rsquo;re running a bit behind on announcements, so here&rsquo;s our post about releasing <code>rv</code> version 0.6.<br><br>The headline features added to version 0.6 are daily releases of <code>ruby-dev</code>, adding namespace support to <code>rvx</code>, and supporting gem servers that require authentication, for projects that use Sidekiq Pro, Avo Pro, and the like. We also added a self-update command.</p>
+  <editable-text data-prop="@content">
+    <p>We&rsquo;re running a bit behind on announcements, so here&rsquo;s our post about releasing <code>rv</code> version 0.6.<br><br>The headline features added to version 0.6 are daily releases of <code>ruby-dev</code>, adding namespace support to <code>rvx</code>, and supporting gem servers that require authentication, for projects that use Sidekiq Pro, Avo Pro, and the like. We also added a self-update command.</p>
 <h2 id="ruby-dev-daily-releases"><code>ruby-dev</code> daily releases</h2>
 <p>The daily releases of <code>ruby-dev</code> are especially helpful if you want to test your application against the latest Ruby version that&rsquo;s currently in development — you don&rsquo;t have to download Ruby source code, or compile it, you can simply install a build of Ruby from git that&rsquo;s less than a day old, any time you want, by running <code>rv ruby install dev</code>. We run nightly builds of Ruby and publish them to GitHub Releases, where anyone using <code>rv</code> can try them out by spending a second or two installing. No more recompiling Ruby every time you want to try the latest — just try it.</p>
 <h2 id="rvx-namespaces">rvx namespaces</h2>
@@ -61,6 +62,7 @@
 <h2 id="more-version-60-updates">more version 6.0 updates</h2>
 <p>This version also includes dozens of bugfixes, and several significant compatibility improvements when working with Bundler configuration and lockfiles. Check out <a href="https://github.com/spinel-coop/rv/blob/main/CHANGELOG.md#rv-060-15-june-2026">the changelog</a> for the full list of all 43 changes.<br><br>We&rsquo;re continuing our work on installing full <code>Gemfile</code>s, as well as adding additional features to make <code>rv</code> the best way to use Ruby and gems. If you&rsquo;d like to help test our changes, give us feedback about how <code>rv</code> could be better, or even help us implement new features, we&rsquo;d love to have your help. Head over to <a href="https://rv.dev">rv.dev</a> to get started, and we&rsquo;ll see you soon!</p>
 
+  </editable-text>
 </section>
 
 

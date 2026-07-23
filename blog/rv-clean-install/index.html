@@ -40,7 +40,7 @@
   </header>
   <main>
     
-<h1>Announcing <code>rv clean-install</code></h1>
+<h1 data-editable="text" data-prop="title">Announcing <code>rv clean-install</code></h1>
 
 <div style="text-align: right">
   
@@ -49,13 +49,15 @@
 </div>
 
 <section class="blog">
-<p>As part of our <a href="https://andre.arko.net/2025/08/25/rv-a-new-kind-of-ruby-management-tool/">quest to build a fast Ruby project tool</a>, we&rsquo;ve been hard at work on the next step of project management: installing gems. As we&rsquo;ve learned over the last 15 years of working on Bundler and RubyGems, package managers are really complicated! It&rsquo;s too much to try to copy all of rbenv, and ruby-build, and RubyGems, and Bundler, all at the same time.</p>
+  <editable-text data-prop="@content">
+    <p>As part of our <a href="https://andre.arko.net/2025/08/25/rv-a-new-kind-of-ruby-management-tool/">quest to build a fast Ruby project tool</a>, we&rsquo;ve been hard at work on the next step of project management: installing gems. As we&rsquo;ve learned over the last 15 years of working on Bundler and RubyGems, package managers are really complicated! It&rsquo;s too much to try to copy all of rbenv, and ruby-build, and RubyGems, and Bundler, all at the same time.</p>
 <p>Since we can&rsquo;t ship everything at once, we spent some time discussing the first project management feature we should add after Ruby versions. Inspired by <code>npm</code> and <code>orogene</code>, we decided to build <code>clean-install</code>. Today, we&rsquo;re releasing the <code>rv clean-install</code> command as part of <a href="https://github.com/spinel-coop/rv/releases/tag/v0.4.1"><code>rv</code> version 0.4.</a></p>
 <p>So, what is a clean install? In this case, clean means &ldquo;from a clean slate&rdquo;. You can use <code>rv ci</code> to install the packages your project needs after a fresh checkout, or before running your tests in CI. It&rsquo;s useful by itself, and it&rsquo;s also concrete step towards managing a project and its dependencies.</p>
 <p>Even better, it lays a lot of the groundwork for future gem management functionality, including downloading, caching, and unpacking gems, compiling native gem extensions, and providing libraries that can be loaded by Bundler at runtime.</p>
 <p>While we don&rsquo;t (yet!) handle adding, removing, or updating gem versions, we&rsquo;re extremely proud of the progress that we&rsquo;ve made, and we&rsquo;re looking forward to improving <code>rv</code> based on your feedback.</p>
 <p>Try running <code>brew install rv; rv clean-install</code> today, and see how it goes. Is it fast? Slow? Are there errors? What do you want to see next? <a href="https://github.com/spinel-coop/rv/issues/new">Let us know what you think</a>.</p>
 
+  </editable-text>
 </section>
 
 

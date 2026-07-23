@@ -40,7 +40,7 @@
   </header>
   <main>
     
-<h1>Why are <code>exec</code> and <code>run</code> so confusing?</h1>
+<h1 data-editable="text" data-prop="title">Why are <code>exec</code> and <code>run</code> so confusing?</h1>
 
 <div style="text-align: right">
   
@@ -49,7 +49,8 @@
 </div>
 
 <section class="blog">
-<p>While working on <a href="https://rv.dev">rv</a>, there&rsquo;s a specific question that has come up over and over again, in many different forms. In the simplest possible form, it boils down to:</p>
+  <editable-text data-prop="@content">
+    <p>While working on <a href="https://rv.dev">rv</a>, there&rsquo;s a specific question that has come up over and over again, in many different forms. In the simplest possible form, it boils down to:</p>
 <blockquote>
 <p>What is the difference between <code>rv exec</code> and <code>rv run</code>? Why have both?</p>
 </blockquote>
@@ -140,6 +141,7 @@
 <p>In my opinion, <code>uv</code> solves this relatively elegantly by having <code>uvx</code> always run a package globally, and <code>uvr</code> always run a package locally inside the current project, if one exists.</p>
 <p>What do you think? <a href="https://github.com/spinel-coop/rv/discussions/235">Let us know in the GitHub discussion about this post.</a></p>
 
+  </editable-text>
 </section>
 
 
