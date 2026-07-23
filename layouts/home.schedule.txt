@@ -1,0 +1,12 @@
+{{- /*
+  Render _schedule.txt for CloudCannon: one line per scheduled post:
+  <RFC3339 date>,Build '<title>',<content path>
+  CloudCannon reads this file after each build and schedules a rebuild at those dates,
+  which will build and publish the page at that time.
+*/ -}}
+{{- $lines := slice -}}
+{{- range (sort (partial "cloudcannon-schedule-scan.txt" "content") "date") -}}
+{{- $lines = $lines | append (printf "%s,Build '%s',%s" (.date.Format "2006-01-02T15:04:05Z07:00") .title .path) -}}
+{{- end -}}
+{{- delimit $lines "\n" -}}
+{{- "\n" -}}
