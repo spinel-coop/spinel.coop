@@ -1,5 +1,7 @@
 {{ define "main" }}
-  {{ .Content }}
+  <editable-text data-prop="@content">
+    {{ .Content }}
+  </editable-text>
 
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}
