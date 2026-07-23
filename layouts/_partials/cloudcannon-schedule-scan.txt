@@ -1,0 +1,38 @@
+{{- /*
+  cloudcannon-schedule-scan
+
+  Search a content directory and return an array of `{date, title, path}` for
+  every page whose publish date is in the future. Hugo excludes future-dated
+  posts from .Site.Pages, so we use `os.ReadFile`.
+
+  Usage: {{ partial "cloudcannon-schedule-scan.txt" "content" }}
+*/ -}}
+{{- $dir := . -}}
+{{- $out := slice -}}
+{{- range (os.ReadDir $dir) -}}
+  {{- $p := path.Join $dir .Name -}}
+  {{- if .IsDir -}}
+    {{- $out = $out | append (partial "cloudcannon-schedule-scan.txt" $p) -}}
+  {{- else if and (ne .Name "_index.md") (in (slice ".md" ".markdown" ".html" ".htm") (path.Ext .Name)) -}}
+    {{- $raw := os.ReadFile $p -}}
+    {{- $fm := false -}}
+    {{- if hasPrefix $raw "+++" -}}
+      {{- $fm = transform.Unmarshal (index (split $raw "+++") 1) -}}
+    {{- else if hasPrefix $raw "---" -}}
+      {{- $fm = transform.Unmarshal (index (split $raw "---") 1) -}}
+    {{- end -}}
+    {{- with $fm -}}
+      {{- if ne (index . "draft") true -}}
+        {{- /* publishDate if present, then date */ -}}
+        {{- $when := or (index . "publishDate") (index . "publishdate") (index . "date") -}}
+        {{- with $when -}}
+          {{- $t := time.AsTime . -}}
+          {{- if $t.After now -}}
+            {{- $out = $out | append (dict "date" $t "title" (or (index $fm "title") "") "path" $p) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

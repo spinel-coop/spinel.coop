@@ -4,7 +4,7 @@ title = 'Spinel, the Ruby open source maintainers‘ co-op'
 summaryLength = 20
 
 [outputs]
-home = ['html', 'rss']
+home = ['html', 'rss', 'schedule']
 section = ['html', 'rss']
 
 [services.rss]
@@ -17,3 +17,12 @@ renderer.unsafe = true
 # remove tags and categories
 disableKinds = ["taxonomy", "term"]
 [taxonomies]
+
+# CloudCannon scheduling via _schedule.txt listing future-dated posts.
+[mediaTypes."text/x-cloudcannon-schedule"]
+suffixes = ['txt']
+[outputFormats.schedule]
+mediaType = 'text/x-cloudcannon-schedule'
+baseName = '_schedule'
+isPlainText = true
+notAlternative = true
