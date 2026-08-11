@@ -29,7 +29,7 @@ nav {
 
 ul:not(nav ul) {
   padding-inline-start: 1em;
-  list-style-type: "* ";
+  list-style-type: "- ";
 }
 
 a {

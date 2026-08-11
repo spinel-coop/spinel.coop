@@ -1,6 +1,6 @@
 +++
 title = 'Spinel Cooperative'
-date = 2023-01-01T08:00:00-07:00
+date = 2023-01-01
 aliases = ["/retainers"]
 +++
 
@@ -22,20 +22,20 @@ You work on your business problems, and let us get your developers unblocked.
 
 Book a [free initial planning session](https://savvycal.com/spinel/client) or [send us an email today](mailto:hello@spinel.coop).
 
-<h3 id="tools"><a href="#tools">Tools</a></h3>
+<h3 id="tools">Tools</h3>
 
 - [`rv`](https://github.com/spinel-coop/rv), the next-generation Ruby version and project manager
 - [`rv-ruby`](https://github.com/spinel-coop/rv-ruby), precompiled Ruby binaries for x86 and ARM, on macOS or Linux
 - [`oaken`](https://github.com/kaspth/oaken), vastly speed up your CI: replace slow factories & skip the maintenance burden of Rails’ fixtures
 - [`brat`](https://codeberg.org/sstephenson/brat), a parallel TAP testing harness for the POSIX shell
 
-<h3 id="team"><a href="#team">Team</a></h3>
+<h3 id="team">Team</h3>
 
 {{< include "team.md" >}}
 
-<h3 id="background"><a href="#background">Background</a></h3>
+<h3 id="background">Background</h3>
 
-We've spent collective decades building what you use every day. We've served on the core teams helping to steer, guide and move the projects forward. Hell, some of these we've even created!
+We've spent collective decades building the tools you use every day. We've served on the core teams helping to steer, guide and move the projects forward. Hell, some of these we've even created!
 
 #### Backend
 
