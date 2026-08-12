@@ -1,9 +1,9 @@
 +++
 _schema = "blog"
 date = 2026-08-12T07:00:00.000Z
-title = "Spinel dev log July 2026"
-slug = "Spinel-dev-log-July-2026"
-draft = true
+title = "Spinel Dev Log for July 2026"
+slug = "spinel-dev-log-july-2026"
+draft = false
 +++
 Welcome to the Spinel dev log! When we’re not [<u>working with client teams</u>](https://spinel.coop/), we’re building open source tools that make it easier to be a software developer, especially for Rubyists. Here’s what’s new with our OSS projects in the past month:
 
