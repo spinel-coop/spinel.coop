@@ -38,11 +38,19 @@ a {
 
 code {
   font-family: courier, monospace;
+  background-color: #eee;
+  padding: 2px 4px;
 }
 
 pre {
-  padding: 1rem 1.5rem;
-  overflow-x: scroll;
+  padding: 0.25rem 0.5rem;
+  overflow-x: auto;
+  background-color: #efefef;
+  border: 1px solid #ddd;
+}
+
+pre code {
+    padding: 0;
 }
 
 h1,
