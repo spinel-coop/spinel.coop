@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-08-26T07:00:00.000Z
 title = "Optimizing Rails DB usage: Bullet vs. prosopite"
 slug = "optimizing-rails-db-usage-bullet-prosopite"
-draft = true
+draft = false
 +++
 One of the worst parts of N+1 performance issues in Rails is how easy it is to inadvertently introduce them. And while using \`includes\` to preload the associations causing the problem generally works, sometimes you may (again) be inadvertently introducing different performance issues if you are not careful.
 
@@ -24,9 +24,7 @@ If you go ahead and check request logs, you'll see one (1) query issued to fetch
 The most common way \[to fix these issues is\] to tell Rails to load all related records upfront through preload, eager\_load, or includes.
 
 * preload will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.
-
 * eager\_load, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that'd be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.
-
 * includes will normally delegate to preload , unless the situation requires joining the tables, for example, when a condition is set on the association.
 
 ## Detecting N+1 queries: Bullet
