@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/blog/optimizing-rails-db-usage-bullet-prosopite/</loc>
+    <lastmod>2026-08-26T07:00:00+00:00</lastmod>
+  </url><url>
     <loc>/blog/spinel-dev-log-july-2026/</loc>
     <lastmod>2026-08-12T07:00:00+00:00</lastmod>
   </url><url>
