@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-08-26T07:00:00.000Z
 title = "Optimizing Rails DB usage: Bullet vs. prosopite"
 slug = "optimizing-rails-db-usage-bullet-prosopite"
-draft = false
+draft = true
 +++
 One of the worst parts of N+1 performance issues in Rails is how easy it is to inadvertently introduce them. And while using \`includes\` to preload the associations causing the problem generally works, sometimes you may (again) be inadvertently introducing different performance issues if you are not careful.
 
@@ -17,11 +17,11 @@ But let's first quickly recap.
 
 Consider the following:
 
-\`Post.all.map(&:comments)\`
+&lt;code&gt;Post.all.map(&:comments)&lt;/code&gt;
 
 If you go ahead and check request logs, you'll see one (1) query issued to fetch all posts, plus (+) one query for each (N) post to fetch its comments. That's why these are called N+1, although I guess 1+N would be a more descriptive name because the 1 needs to happen before the N.
 
-The most common way \[to fix these issues is\] to tell Rails to load all related records upfront through preload, eager\_load, or includes.
+The most common way to fix these issues is to tell Rails to load all related records upfront through preload, eager\_load, or includes.
 
 * preload will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.
 * eager\_load, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that'd be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.
@@ -37,7 +37,7 @@ As a result, we found Bullet to brittle for the job and decided to look into the
 
 ## Detecting N+1 queries: prosopite
 
-Prosopite subscribes to \`active\_record.sql\` hooks using ActiveSupport's instrumentation API, and looks for multiple instances of the same query issued from the exact same backtrace. We found this approach not only more generic and stable, but also less subject to false positives.
+Prosopite subscribes to &lt;code&gt;active\_record.sql&lt;/code&gt; hooks using ActiveSupport's instrumentation API, and looks for multiple instances of the same query issued from the exact same backtrace. We found this approach not only more generic and stable, but also less subject to false positives.
 
 So, with more reliable detection and minimal false positives — something very nice from a detection tool — we found our tool of choice for detecting N+1 queries: prosopite.
 
@@ -49,24 +49,24 @@ At the start of our work with the team that hired us, we found that their API re
 
 So after coming close to reintroducing some unnecessary queries for our client while fixing N+1s, we decided to enable Bullet to get some guardrails in place. The process didn't come without a few gotchas, though!
 
-First, Bullet documents it's possible to enable its features independently, which is useful for us because we want to keep prosopite for detecting N+1s. We thought this would do the trick:
+First, Bullet documents it's possible to enable its features independently, which is useful for us because we want to keep &lt;code&gt;prosopite&lt;/code&gt; for detecting N+1s. We thought this would do the trick:
 
-\`Bullet.n\_plus\_one\_query\_enable = false\` \`Bullet.unused\_eager\_loading\_enable = true\`
+&lt;code&gt;Bullet.n\_plus\_one\_query\_enable = false&lt;/code&gt; &lt;code&gt;Bullet.unused\_eager\_loading\_enable = true&lt;/code&gt;
 
 However, it did not work when we tried it. Because N+1 detection is disabled, Bullet fails to track association usage properly and incorrectly flags many associations as unused. Fortunately it was an easy fix which we sent upstream:[<u>https://github.com/flyerhzm/bullet/pull/776</u>](https://github.com/flyerhzm/bullet/pull/776) .
 
-After including that fix, Bullet detected a bunch of issues in our client's codebase. It still run into some more false positives though: if a \`has\_many :through\` association has an associated scope with conditions, it will similarly be flagged as unused by Bullet, even if that's not really the case. The fix here was trickier, since as we explained earlier, it involves patching more ActiveRecord internals to get association usage properly tracked. We also sent this second fix upstream:[<u>https://github.com/flyerhzm/bullet/pull/777</u>](https://github.com/flyerhzm/bullet/pull/777/changes/b4ac3719daaa8fd0dd2a4c4835e48d7f8abf5e5e).
+After including that fix, Bullet detected a bunch of issues in our client's codebase. It still run into some more false positives though: if a &lt;code&gt;has\_many :through&lt;/code&gt; association has an associated scope with conditions, it will similarly be flagged as unused by Bullet, even if that's not really the case. The fix here was trickier, since as we explained earlier, it involves patching more ActiveRecord internals to get association usage properly tracked. We also sent this second fix upstream:[<u>https://github.com/flyerhzm/bullet/pull/777</u>](https://github.com/flyerhzm/bullet/pull/777/changes/b4ac3719daaa8fd0dd2a4c4835e48d7f8abf5e5e).
 
 With this second patch in place, we were left with only true positives and all that was left was fixing them, tada!
 
-Or so we thought. There's still one small catch. Sometimes our client's codebase will preload a \`has\_many :through\` association but then will only use the intermediate associations. Bullet flags this as an unused eager load, which I find questionable. For example:
+Or so we thought. There's still one small catch. Sometimes our client's codebase will preload a &lt;code&gt;has\_many :through&lt;/code&gt; association but then will only use the intermediate associations. Bullet flags this as an unused eager load, which I find questionable. For example:
 
-\`Author.includes(:comments).all.each \{\|author\| author.comments\}\` \`Author.includes(:comments).all.each \{\|author\| author.posts\}\`<br>\`Author.includes(:comments).all.each \{\|author\|\` \`author.posts.map(&:comments)\}'
+&lt;code&gt;Author.includes(:comments).all.each \{\|author\| author.comments\}&lt;/code&gt; &lt;code&gt;Author.includes(:comments).all.each \{\|author\| author.posts\}&lt;/code&gt;<br>&lt;code&gt;Author.includes(:comments).all.each \{\|author\| author.posts.map(&:comments)\}&lt;/code&gt;
 
 Bullet is of course fine with the first example, but flags the second as an unused eager load. That makes sense, as it's only necessary to eager load :posts in the second case. However, it also flags the third example as an unused eager load, even though it's not. All eagerly loaded records are necessary to prevent N+1 queries.
 
-I understand what Bullet is flagging here, the comments association for each Author record is getting populated but not getting used later. You can of course work around the problem with \`Author.includes(posts: :comments)\`, but I have the feeling folks may prefer the more concise version, as long as it does not create any unnecessary DB queries.
+I understand what Bullet is flagging here, the &lt;code&gt;comments&lt;/code&gt; association for each &lt;code&gt;Author&lt;/code&gt; record is getting populated but not getting used later. You can of course work around the problem with &lt;code&gt;Author.includes(posts: :comments)&lt;/code&gt;, but I have the feeling folks may prefer the more concise version, as long as it does not create any unnecessary DB queries.
 
-For now, we've gone with the fix of making our \`includes\` (admittedly) more verbose ( ) in exchange for more accuracy, but I may revisit this as an optional feature for Bullet! What do you think? Reply to us at [hello@spinel.coop](mailto:hello@spinel.coop) and let’s continue the conversation! Join our mailing list below for posts like this delivered directly to your inbox. And of course, if you’re ready to work with us, [book an intro chat with us](https://savvycal.com/spinel/client?d=60&amp;sid=53ac2a0e-3ea9-4c71-9423-86066b1ec381&amp;from=2026-08-20) to find out how we can help you solve where you’re stuck!
+For now, we've gone with the fix of making our &lt;code&gt;includes&lt;/code&gt; (admittedly) more verbose ( ) in exchange for more accuracy, but I may revisit this as an optional feature for Bullet! What do you think? Reply to us at [hello@spinel.coop](mailto:hello@spinel.coop) and let’s continue the conversation! Join our mailing list below for posts like this delivered directly to your inbox. And of course, if you’re ready to work with us, [book an intro chat with us](https://savvycal.com/spinel/client?d=60&amp;sid=53ac2a0e-3ea9-4c71-9423-86066b1ec381&amp;from=2026-08-20) to find out how we can help you solve where you’re stuck!
 
 &nbsp;
