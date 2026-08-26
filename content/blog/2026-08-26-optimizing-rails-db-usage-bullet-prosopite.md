@@ -29,7 +29,7 @@ The most common way \[to fix these issues is\] to tell Rails to load all related
 
 ## Detecting N+1 queries: Bullet
 
-Historically,[<u>Bullet</u>](https://github.com/flyerhzm/bullet) has been the reference tool for finding N+1 queries in Rails. It works by keeping track of association usage and how many records each association loads in order to detect N+1s. In order to do this, it needs to monkeypatch ActiveRecord internals.
+Historically, [<u>Bullet</u>](https://github.com/flyerhzm/bullet) has been the reference tool for finding N+1 queries in Rails. It works by keeping track of association usage and how many records each association loads in order to detect N+1s. In order to do this, it needs to monkeypatch ActiveRecord internals.
 
 While that generally works, we found it often runs into false positives and it’s of course hard to maintain: changes in internal ActiveRecord APIs may break Bullet and force Bullet to change in order to adapt. Looking at the monkeypatches themselves illustrates this even more clearly: Bullet needs to [add a new file like that one](https://github.com/flyerhzm/bullet/blob/ecd16a22c40d950d738ad2c69293bdbae18af00b/lib/bullet/active_record81.rb) every time there's a new version of Rails.
 
