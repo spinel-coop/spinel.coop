@@ -65,7 +65,7 @@
 <li>includes will normally delegate to preload , unless the situation requires joining the tables, for example, when a condition is set on the association.</li>
 </ul>
 <h2 id="detecting-n1-queries-bullet">Detecting N+1 queries: Bullet</h2>
-<p>Historically,<a href="https://github.com/flyerhzm/bullet"><u>Bullet</u></a> has been the reference tool for finding N+1 queries in Rails. It works by keeping track of association usage and how many records each association loads in order to detect N+1s. In order to do this, it needs to monkeypatch ActiveRecord internals.</p>
+<p>Historically, <a href="https://github.com/flyerhzm/bullet"><u>Bullet</u></a> has been the reference tool for finding N+1 queries in Rails. It works by keeping track of association usage and how many records each association loads in order to detect N+1s. In order to do this, it needs to monkeypatch ActiveRecord internals.</p>
 <p>While that generally works, we found it often runs into false positives and it’s of course hard to maintain: changes in internal ActiveRecord APIs may break Bullet and force Bullet to change in order to adapt. Looking at the monkeypatches themselves illustrates this even more clearly: Bullet needs to <a href="https://github.com/flyerhzm/bullet/blob/ecd16a22c40d950d738ad2c69293bdbae18af00b/lib/bullet/active_record81.rb">add a new file like that one</a> every time there&rsquo;s a new version of Rails.</p>
 <p>As a result, we found Bullet to brittle for the job and decided to look into the alternative.</p>
 <h2 id="detecting-n1-queries-prosopite">Detecting N+1 queries: prosopite</h2>
