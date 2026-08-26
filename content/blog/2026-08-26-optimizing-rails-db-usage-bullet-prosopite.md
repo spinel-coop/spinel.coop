@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-08-26T07:00:00.000Z
 title = "Optimizing Rails DB usage: Bullet vs. prosopite"
 slug = "optimizing-rails-db-usage-bullet-prosopite"
-draft = true
+draft = false
 +++
 One of the worst parts of N+1 performance issues in Rails is how easy it is to inadvertently introduce them. And while using \`includes\` to preload the associations causing the problem generally works, sometimes you may (again) be inadvertently introducing different performance issues if you are not careful.
 
