@@ -66,11 +66,8 @@ Or so we thought. There's still one small catch. Sometimes our client's codebase
 
 ```
 Author.includes(:comments).all.each {|author| author.comments}
-
+Author.includes(:comments).all.each {|author| author.posts}
 Author.includes(:comments).all.each {|author|
-
-author.posts}Author.includes(:comments).all.each {|author|
-
 author.posts.map(&:comments)}
 ```
 
