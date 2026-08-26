@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-08-26T07:00:00.000Z
 title = "Optimizing Rails DB usage: Bullet vs. Prosopite"
 slug = "optimizing-rails-db-usage-bullet-prosopite"
-draft = false
+draft = true
 +++
 One of the worst parts of N+1 performance issues in Rails is how easy it is to inadvertently introduce them. And while using `includes` to preload the associations causing the problem generally works, sometimes you may (again) be inadvertently introducing different performance issues if you are not careful.
 
@@ -65,7 +65,13 @@ With this second patch in place, we were left with only true positives and all t
 Or so we thought. There's still one small catch. Sometimes our client's codebase will preload a `has_many :through` association but then will only use the intermediate associations. Bullet flags this as an unused eager load, which I find questionable. For example:
 
 ```
-Author.includes(:comments).all.each {|author| author.comments} Author.includes(:comments).all.each {|author| author.posts}Author.includes(:comments).all.each {|author| author.posts.map(&:comments)}
+Author.includes(:comments).all.each {|author| author.comments}
+
+Author.includes(:comments).all.each {|author|
+
+author.posts}Author.includes(:comments).all.each {|author|
+
+author.posts.map(&:comments)}
 ```
 
 Bullet is of course fine with the first example, but flags the second as an unused eager load. That makes sense, as it's only necessary to eager load :posts in the second case. However, it also flags the third example as an unused eager load, even though it's not. All eagerly loaded records are necessary to prevent N+1 queries.
