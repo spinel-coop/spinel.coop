@@ -1,6 +1,28 @@
 paths:
   uploads: static/img
   static: static
+_editables:
+  content:
+    blockquote: true
+    bold: true
+    bulletedlist: true
+    code_block: true
+    code_inline: true
+    code: true
+    horizontalrule: true
+    image: true
+    indent: true
+    italic: true
+    link: true
+    numberedlist: true
+    outdent: true
+    redo: true
+    remove_custom_markup: true
+    strike: true
+    subscript: true
+    superscript: true
+    underline: true
+    undo: true
 collections_config:
   pages:
     path: content
