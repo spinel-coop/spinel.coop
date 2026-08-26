@@ -65,10 +65,16 @@ With this second patch in place, we were left with only true positives and all t
 Or so we thought. There's still one small catch. Sometimes our client's codebase will preload a `has_many :through` association but then will only use the intermediate associations. Bullet flags this as an unused eager load, which I find questionable. For example:
 
 ```
+# Used eager load
 Author.includes(:comments).all.each {|author| author.comments}
+
+# Unused eager load
 Author.includes(:comments).all.each {|author| author.posts}
-Author.includes(:comments).all.each {|author|
-author.posts.map(&:comments)}
+
+# Used eager load, wrongly flagged as unused by Bullet
+Author.includes(:comments).all.each do |author|
+  author.posts.map(&:comments)
+end
 ```
 
 Bullet is of course fine with the first example, but flags the second as an unused eager load. That makes sense, as it's only necessary to eager load :posts in the second case. However, it also flags the third example as an unused eager load, even though it's not. All eagerly loaded records are necessary to prevent N+1 queries.
