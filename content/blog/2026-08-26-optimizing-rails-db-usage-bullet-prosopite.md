@@ -81,6 +81,8 @@ Bullet is of course fine with the first example, but flags the second as an unus
 
 I understand what Bullet is flagging here, the `comments` association for each `Author` record is getting populated but not getting used later. You can of course work around the problem with `Author.includes(posts: :comments)`, but I have the feeling folks may prefer the more concise version, as long as it does not create any unnecessary DB queries.
 
-For now, we've gone with the fix of making our `includes` (admittedly) more verbose in exchange for more accuracy, but I may revisit this as an optional feature for Bullet! What do you think? Reply to us at [hello@spinel.coop](mailto:hello@spinel.coop) and let’s continue the conversation! Join our mailing list below for posts like this delivered directly to your inbox. And of course, if you’re ready to work with us, [book an intro chat with us](https://savvycal.com/spinel/client?d=60&amp;sid=53ac2a0e-3ea9-4c71-9423-86066b1ec381&amp;from=2026-08-20) to find out how we can help you solve where you’re stuck!
+For now, we've gone with the fix of making our `includes` (admittedly) more verbose in exchange for more accuracy, but I may revisit this as an optional feature for Bullet!
+
+What do you think? Reply to us at [hello@spinel.coop](mailto:hello@spinel.coop) and let’s continue the conversation! Join our mailing list below for posts like this delivered directly to your inbox. And of course, if you’re ready to work with us, [book an intro chat with us](https://savvycal.com/spinel/client?d=60&amp;sid=53ac2a0e-3ea9-4c71-9423-86066b1ec381&amp;from=2026-08-20) to find out how we can help you solve where you’re stuck!
 
 &nbsp;
