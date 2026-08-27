@@ -21,11 +21,11 @@ Consider the following:
 
 If you go ahead and check request logs, you'll see one (1) query issued to fetch all posts, plus (+) one query for each (N) post to fetch its comments. That's why these are called N+1, although I guess 1+N would be a more descriptive name because the 1 needs to happen before the N.
 
-The most common way to fix these issues is to tell Rails to load all related records upfront through preload, eager\_load, or includes.
+The most common way to fix these issues is to tell Rails to load all related records upfront through `preload`, `eager_load`, or `includes`.
 
-* preload will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.
-* eager\_load, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that'd be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.
-* includes will normally delegate to preload , unless the situation requires joining the tables, for example, when a condition is set on the association.
+* `preload` will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.
+* `eager_load`, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that'd be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.
+* `includes` will normally delegate to `preload`, unless the situation requires joining the tables, for example, when a condition is set on the association.
 
 ## Detecting N+1 queries: Bullet
 
@@ -33,7 +33,7 @@ Historically, [<u>Bullet</u>](https://github.com/flyerhzm/bullet) has been the r
 
 While that generally works, we found it often runs into false positives and it’s of course hard to maintain: changes in internal ActiveRecord APIs may break Bullet and force Bullet to change in order to adapt. Looking at the monkeypatches themselves illustrates this even more clearly: Bullet needs to [add a new file like that one](https://github.com/flyerhzm/bullet/blob/ecd16a22c40d950d738ad2c69293bdbae18af00b/lib/bullet/active_record81.rb) every time there's a new version of Rails.
 
-As a result, we found Bullet to brittle for the job and decided to look into the alternative.
+As a result, we found Bullet too brittle for the job and decided to look into the alternative.
 
 ## Detecting N+1 queries: prosopite
 
