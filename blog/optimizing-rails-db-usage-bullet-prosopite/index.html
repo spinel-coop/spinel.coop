@@ -58,16 +58,16 @@
 <p>Consider the following:</p>
 <p><code>Post.all.map(&amp;:comments)</code></p>
 <p>If you go ahead and check request logs, you&rsquo;ll see one (1) query issued to fetch all posts, plus (+) one query for each (N) post to fetch its comments. That&rsquo;s why these are called N+1, although I guess 1+N would be a more descriptive name because the 1 needs to happen before the N.</p>
-<p>The most common way to fix these issues is to tell Rails to load all related records upfront through preload, eager_load, or includes.</p>
+<p>The most common way to fix these issues is to tell Rails to load all related records upfront through <code>preload</code>, <code>eager_load</code>, or <code>includes</code>.</p>
 <ul>
-<li>preload will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.</li>
-<li>eager_load, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that&rsquo;d be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.</li>
-<li>includes will normally delegate to preload , unless the situation requires joining the tables, for example, when a condition is set on the association.</li>
+<li><code>preload</code> will load records using a separate query for each table involved, effectively turning N+1s into 1+1s.</li>
+<li><code>eager_load</code>, on the contrary, will use a LEFT OUTER JOIN to load everything through a single query, so that&rsquo;d be the 1+0 solution. The disadvantage is more complex queries are likely to be more costly.</li>
+<li><code>includes</code> will normally delegate to <code>preload</code>, unless the situation requires joining the tables, for example, when a condition is set on the association.</li>
 </ul>
 <h2 id="detecting-n1-queries-bullet">Detecting N+1 queries: Bullet</h2>
 <p>Historically, <a href="https://github.com/flyerhzm/bullet"><u>Bullet</u></a> has been the reference tool for finding N+1 queries in Rails. It works by keeping track of association usage and how many records each association loads in order to detect N+1s. In order to do this, it needs to monkeypatch ActiveRecord internals.</p>
 <p>While that generally works, we found it often runs into false positives and it’s of course hard to maintain: changes in internal ActiveRecord APIs may break Bullet and force Bullet to change in order to adapt. Looking at the monkeypatches themselves illustrates this even more clearly: Bullet needs to <a href="https://github.com/flyerhzm/bullet/blob/ecd16a22c40d950d738ad2c69293bdbae18af00b/lib/bullet/active_record81.rb">add a new file like that one</a> every time there&rsquo;s a new version of Rails.</p>
-<p>As a result, we found Bullet to brittle for the job and decided to look into the alternative.</p>
+<p>As a result, we found Bullet too brittle for the job and decided to look into the alternative.</p>
 <h2 id="detecting-n1-queries-prosopite">Detecting N+1 queries: prosopite</h2>
 <p>Prosopite subscribes to <code>active_record.sql</code> hooks using ActiveSupport&rsquo;s instrumentation API, and looks for multiple instances of the same query issued from the exact same backtrace. We found this approach not only more generic and stable, but also less subject to false positives.</p>
 <p>So, with more reliable detection and minimal false positives — something very nice from a detection tool — we found our tool of choice for detecting N+1 queries: prosopite.</p>
