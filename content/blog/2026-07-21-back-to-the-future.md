@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-09-02T00:00:00-07:00
 title = "Back to the Future"
 slug = "back-to-the-future"
-draft = true
+draft = false
 +++
 ***ICYMI:** Our August newsletter went out last week. As a sample for our readers who aren’t yet on our mailing list, we’re posting that issue here. If you enjoy and you want more like this from us each month, join our mailing list at the bottom of the page!*
 
