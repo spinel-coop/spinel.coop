@@ -38,11 +38,20 @@ a {
 
 code {
   font-family: courier, monospace;
+  background-color: #eee;
+  padding: 2px 4px;
 }
 
 pre {
-  padding: 1rem 1.5rem;
-  overflow-x: scroll;
+  padding: 0.25rem 0.5rem;
+  overflow-x: auto;
+  background-color: #efefef;
+  border: 1px solid #ddd;
+}
+
+pre code {
+    padding: 0;
+    background: none;
 }
 
 h1,
@@ -145,6 +154,15 @@ footer hr {
 @media (prefers-color-scheme: dark) {
   header img {
     filter: grayscale(0.75) invert(1) brightness(2);
+  }
+
+  code {
+    background-color: #333;
+  }
+
+  pre {
+    background-color: #2a2a2a;
+    border-color: #444;
   }
 }
 
