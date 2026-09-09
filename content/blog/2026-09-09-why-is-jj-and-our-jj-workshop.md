@@ -1,7 +1,7 @@
 +++
 _schema = "blog"
 date = 2026-09-09T00:00:00-07:00
-title = "Source control doesn't need to be scary! (Or: why is jj, and our jj workshop)"
+title = "Source control doesn't need to be scary! (find out why at our jj workshop)"
 slug = "version-control-doesnt-have-to-be-scary"
 draft = true
 +++
