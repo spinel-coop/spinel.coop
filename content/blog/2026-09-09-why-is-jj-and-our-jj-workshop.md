@@ -2,7 +2,7 @@
 _schema = "blog"
 date = 2026-09-09T00:00:00-07:00
 title = "Source control doesn't need to be scary! (Find out why at our jj workshop)"
-slug = "version-control-doesnt-need-to-be-scary"
+slug = "source-control-doesnt-need-to-be-scary"
 draft = false
 +++
 We're [doing a workshop at Euruko 2026](https://app.swapcard.com/widget/event/euruko-2026-brno/planning/UGxhbm5pbmdfNDU1MzU4MA==) next week. We'll be talking about jj, the [jujutsu version control system](https://github.com/jj-vcs/jj). jj is a new source management tool that is compatible with git hosting but a huge improvement on git overall. With git, it's easy to dig yourself into a hole that is hard or (in some cases) impossible to get out of. jj is a **powerful**, **simpler**, and **safer** alternative that will help you avoid those version control traps.
