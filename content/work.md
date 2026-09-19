@@ -6,19 +6,30 @@ title = 'Work with Spinel'
 
 At Spinel, our common work breaks down into [solutions for your problems](#expert-solutions), [workshops to boost your team](#workshops-and-training), or [a full-fledged Engineering Efficiency team](#an-engineering-efficiency-team) for your organization.
 
-## Expert solutions
+## Analysis and recommendation report
 
-Whatever problem your team is running into, we can offer you meaningful options to resolve it.
+We'll review your application, test suite, and deploy pipeline, and write a report with our findings and recommendations. Get an expert perspective on how to simplify, optimize, and speed up everything about your team's work.
 
-Deciding between dependencies? Unsure how to architect a new feature? We'll walk you through the tradeoffs we've experienced, so you can make an informed decision.
+One-time rate.
 
-Bring us into your Slack, where we can learn your context and work with your team to resolve any place where they are getting bogged down. Satisfaction guaranteed.
+## Enterprise support contract
 
-- The first problem is free: [book now!](https://savvycal.com/spinel/client)
-- Single problem-solving sessions: $500
-- A week of unlimited solutions: $2,500
-- Problems solved for a month: $7,500
-- A full year of on-demand expert solutions: $75,000
+Guaranteed response times for issues with `rv`, gem.coop, Ruby versions, Rails versions, and any kind of dependency management issues. Get answers for a tiny fraction of the cost of hiring someone from one of the project core teams.
+
+Monthly and yearly rates.
+
+## Team office hours
+
+A regular group call with your engineering team. Common topics include:
+
+- Architecting new features
+- Choosing between dependency options
+- Framework upgrades
+- Adopting new services
+
+We'll walk you through the tradeoffs we've experienced, help you make an informed decision, and support you as you come up with new questions.
+
+Weekly and monthly rates.
 
 ## Workshops and training
 
