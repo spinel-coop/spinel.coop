@@ -7,47 +7,25 @@ draft = true
 +++
 Back in April while I was a [guest on the Dead Code podcast](https://shows.acast.com/dead-code/episodes/seeds-of-devastation-with-kasper-timm-hansen), I mentioned an idea I’d been brewing on for a while: that the number of lines of code is still a useful metric when you’re writing gems and evaluating whether you want to depend on them.
 
-&nbsp;
-
 What I mean is, when you’re looking at a gem’s README, try to imagine a rough idea of what you think the implementation will look like in terms of lines of code. Then generate a [\`cloc\`](https://github.com/AlDanial/cloc/) count and see how off you were. (Side note: passing \`--by-file\` is also interesting).
-
-&nbsp;
 
 If it was less than you expected, then maybe the implementation is worth diving into further and seeing if there’s something interesting they’re doing that you could learn from. Did they use an interesting \`Enumerable\` method you haven’t seen before that you can look up now? Are they needing to do work to have thread safety that you have not thought about before? Is there just some interesting organization in how they’ve arranged classes? That’s all stuff you can freely be inspired by!
 
-&nbsp;
-
 Now, if on the other hand, there were more lines of code than you expected? You may have the problem space wrong and it’s more complex than you thought. That’s worth acknowledging! It’s also possible the gem implements the approach in a way that’s too abstracted and dense, and you may not want to depend on it after all.
-
-&nbsp;
 
 \### Breezy reads
 
-&nbsp;
-
 I’ve been writing gems for a long time, and I’ve been really focused on trying to make them conceptually clear. In my experience, if the overall concept is easily identifiable I find that it naturally helps reign in complexity, which then also constrains the lines of code.
-
-&nbsp;
 
 The ultimate goal of this practice is to try to condense the gem, so it’s ultimately easier to read and audit for a new developer. I’ve been calling this a design focus on “breezy reads.”
 
-&nbsp;
-
 With this type of design a senior developer should be able to get what’s going on in a gem in less than an hour, ideally.
-
-&nbsp;
 
 As examples, my [ActiveRecord::AssociatedObject](https://gem.coop/@kaspth/active_record-associated_object) and [ActiveJob::Performs](https://gem.coop/@kaspth/active_job-performs) gems are both under 100 lines of code. Associated Objects are POROs nestled within a parent ActiveRecord to help extract domain logic into much smaller collaborator objects. Performs sets an app-wide convention for how jobs are integrated into your Domain Model. Giving both of these gems a tight scope means that it’s much easier to see when things don’t belong, and decide that they won’t be included in these gems.
 
-&nbsp;
-
 To me, both of these ideas are worth about 100 lines of code. Any more, and I think we’d be overspending to the point that they’re not worth working on or maintaining.
 
-&nbsp;
-
 Here’s what it looks like, with the core of ActiveRecord::AssociatedObject being around ~70 lines of Ruby:
-
-&nbsp;
 
 \`\`\`ruby
 
