@@ -119,7 +119,7 @@ Having a gem with many lines it’s fine, it’s when a gem exceeds what I think
 
 > I have generally scrunched my nose at that idea \[about lines-of-code rules\], **but** hearing how you pair it with *conceptual* complexity made it click. It's not just golfing.
 
-*&mdash; my friend [Thomas Cannon](https://practical.computer) after listening to the Dead Code episode.*
+*— my friend* [*Thomas Cannon*](https://practical.computer) *after listening to the Dead Code episode.*
 
 I’ve been finding these lines of code buckets useful, both when I’m writing a gem and trying to quantify what its worth is, but also when I’m deciding whether to depend on another person’s gem.
 
