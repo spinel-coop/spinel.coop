@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>Why you should check your gem&#39;s lines of code</title>
+<link rel="canonical" href="/blog/why-you-should-check-your-gems-lines-of-code/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.8793e56079e40dd7a4d3b719f6df28e06862b3ae24c666dee115a2201f41b805.css" integrity="sha256-h5PlYHnkDdek07cZ9t8o4Ghis64kxmbe4RWiIB9BuAU=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1 data-editable="text" data-prop="title">Why you should check your gem's lines of code</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-09-23T00:00:00-07:00">September 23, 2026</time>
+</div>
+
+<section class="blog">
+  <editable-text data-prop="@content">
+    <p>Back in April while I was a <a href="https://shows.acast.com/dead-code/episodes/seeds-of-devastation-with-kasper-timm-hansen">guest on the Dead Code podcast</a>, I mentioned an idea I’d been brewing on for a while: that the number of lines of code is still a useful metric when you’re writing gems and evaluating whether you want to depend on them.</p>
+<p>What I mean is, when you’re looking at a gem’s README, try to imagine a rough idea of what you think the implementation will look like in terms of lines of code. Then generate a <a href="https://github.com/AlDanial/cloc/"><code>cloc</code></a> count and see how off you were. (Side note: passing <code>--by-file</code> is also interesting).</p>
+<p>If it was less than you expected, then maybe the implementation is worth diving into further and seeing if there’s something interesting they’re doing that you could learn from. Did they use an interesting <code>Enumerable</code> method you haven’t seen before that you can look up now? Are they needing to do work to have thread safety that you have not thought about before? Is there just some interesting organization in how they’ve arranged classes? That’s all stuff you can freely be inspired by!</p>
+<p>Now, if on the other hand, there were more lines of code than you expected? You may have the problem space wrong and it’s more complex than you thought. That’s worth acknowledging! It’s also possible the gem implements the approach in a way that’s too abstracted and dense, and you may not want to depend on it after all.</p>
+<h3 id="breezy-reads">Breezy reads</h3>
+<p>I’ve been writing gems for a long time, and I’ve been really focused on trying to make them conceptually clear. In my experience, if the overall concept is easily identifiable I find that it naturally helps reign in complexity, which then also constrains the lines of code.</p>
+<p>The ultimate goal of this practice is to try to condense the gem, so it’s ultimately easier to read and audit for a new developer. I’ve been calling this a design focus on “breezy reads.”</p>
+<p>With this type of design a senior developer should be able to get what’s going on in a gem in less than an hour, ideally.</p>
+<p>As examples, my <a href="https://gem.coop/@kaspth/active_record-associated_object">ActiveRecord::AssociatedObject</a> and <a href="https://gem.coop/@kaspth/active_job-performs">ActiveJob::Performs</a> gems are both under 100 lines of code. Associated Objects are POROs nestled within a parent ActiveRecord to help extract domain logic into much smaller collaborator objects. Performs sets an app-wide convention for how jobs are integrated into your Domain Model. Giving both of these gems a tight scope means that it’s much easier to see when things don’t belong, and decide that they won’t be included in these gems.</p>
+<p>To me, both of these ideas are worth about 100 lines of code. Any more, and I think we’d be overspending to the point that they’re not worth working on or maintaining.</p>
+<p>Here’s what it looks like, with the core of ActiveRecord::AssociatedObject being around ~70 lines of Ruby:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e"># frozen_string_literal: true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">AssociatedObject</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">extend</span> <span style="color:#66d9ef">ActiveModel</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Naming</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">include</span> <span style="color:#66d9ef">ActiveModel</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Conversion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#f92672">&lt;&lt;</span> self
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">inherited</span>(new_object)
+</span></span><span style="display:flex;"><span>      new_object<span style="color:#f92672">.</span>associated_via(new_object<span style="color:#f92672">.</span>module_parent)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">associated_via</span>(record)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">unless</span> record<span style="color:#f92672">.</span>respond_to?(<span style="color:#e6db74">:descends_from_active_record?</span>) <span style="color:#f92672">&amp;&amp;</span> record<span style="color:#f92672">.</span>descends_from_active_record?
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span> <span style="color:#66d9ef">ArgumentError</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>record<span style="color:#e6db74">}</span><span style="color:#e6db74"> isn&#39;t a valid namespace; can only associate with ActiveRecord::Base subclasses&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      @record, @attribute_name <span style="color:#f92672">=</span> record, model_name<span style="color:#f92672">.</span>element<span style="color:#f92672">.</span>to_sym
+</span></span><span style="display:flex;"><span>      alias_method record<span style="color:#f92672">.</span>model_name<span style="color:#f92672">.</span>element, <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">attr_reader</span> <span style="color:#e6db74">:record</span>, <span style="color:#e6db74">:attribute_name</span>
+</span></span><span style="display:flex;"><span>    delegate <span style="color:#e6db74">:primary_key</span>, <span style="color:#e6db74">:unscoped</span>, <span style="color:#e6db74">:transaction</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extension</span>(<span style="color:#f92672">&amp;</span>block)
+</span></span><span style="display:flex;"><span>      record<span style="color:#f92672">.</span>class_eval(<span style="color:#f92672">&amp;</span>block)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">method_missing</span>(meth, <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>record<span style="color:#f92672">.</span>respond_to?(meth) <span style="color:#f92672">||</span> meth<span style="color:#f92672">.</span>end_with?(<span style="color:#e6db74">&#34;?&#34;</span>, <span style="color:#e6db74">&#34;=&#34;</span>) <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">super</span> <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        record<span style="color:#f92672">.</span>public_send(meth, <span style="color:#f92672">...</span>)<span style="color:#f92672">.</span>then <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>value<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>          value<span style="color:#f92672">.</span>respond_to?(<span style="color:#e6db74">:each</span>) ? value<span style="color:#f92672">.</span>map(<span style="color:#f92672">&amp;</span>attribute_name) : value<span style="color:#f92672">&amp;.</span>public_send(attribute_name)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">respond_to_missing?</span>(meth, <span style="color:#f92672">...</span>)
+</span></span><span style="display:flex;"><span>      (record<span style="color:#f92672">.</span>respond_to?(meth, <span style="color:#f92672">...</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>meth<span style="color:#f92672">.</span>end_with?(<span style="color:#e6db74">&#34;?&#34;</span>, <span style="color:#e6db74">&#34;=&#34;</span>)) <span style="color:#f92672">||</span> <span style="color:#66d9ef">super</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">module</span> Caching
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cache_key_with_version</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>cache_key<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">#{</span>cache_version<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>tap { _1<span style="color:#f92672">.</span>delete_suffix!(<span style="color:#e6db74">&#34;-&#34;</span>) }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    delegate <span style="color:#e6db74">:cache_version</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cache_key</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">when</span> <span style="color:#f92672">!</span>record<span style="color:#f92672">.</span>cache_versioning?
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">raise</span> <span style="color:#e6db74">&#34;ActiveRecord::AssociatedObject#cache_key only supports </span><span style="color:#e6db74">#{</span>record<span style="color:#f92672">.</span>class<span style="color:#e6db74">}</span><span style="color:#e6db74">.cache_versioning = true&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">when</span> new_record?
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>model_name<span style="color:#f92672">.</span>cache_key<span style="color:#e6db74">}</span><span style="color:#e6db74">/new&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>model_name<span style="color:#f92672">.</span>cache_key<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">#{</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">include</span> <span style="color:#66d9ef">Caching</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">attr_reader</span> <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>  delegate <span style="color:#e6db74">:id</span>, <span style="color:#e6db74">:new_record?</span>, <span style="color:#e6db74">:persisted?</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>  delegate <span style="color:#e6db74">:updated_at</span>, <span style="color:#e6db74">:updated_on</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:record</span> <span style="color:#75715e"># Helpful when passing to `fresh_when`/`stale?`</span>
+</span></span><span style="display:flex;"><span>  delegate <span style="color:#e6db74">:transaction</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:record</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize</span>(record)
+</span></span><span style="display:flex;"><span>    @record <span style="color:#f92672">=</span> record
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">==</span>(other)
+</span></span><span style="display:flex;"><span>    other<span style="color:#f92672">.</span>is_a?(self<span style="color:#f92672">.</span>class) <span style="color:#f92672">&amp;&amp;</span> id <span style="color:#f92672">==</span> other<span style="color:#f92672">.</span>id
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>require_relative <span style="color:#e6db74">&#34;associated_object/version&#34;</span>
+</span></span><span style="display:flex;"><span>require_relative <span style="color:#e6db74">&#34;associated_object/railtie&#34;</span> <span style="color:#66d9ef">if</span> defined?(<span style="color:#66d9ef">Rails</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Railtie</span>)
+</span></span></code></pre></div><p>— from <a href="https://github.com/kaspth/active_record-associated_object/blob/v1.0.0/lib/active_record/associated_object.rb">lib/active_record/associated_object.rb 1.0.0</a></p>
+<p>In another gem of mine, <a href="https://gem.coop/@kaspth/oaken">Oaken</a>, I’ve chosen a slightly larger scope where I’m focusing on making Rails apps dev and test data more maintainable but specifically with the concept of leveling up database seeds to do so. I could see that surface being worth up to 1000 lines of code.</p>
+<p>Right now, however, Oaken 1.0.0 has 280 lines of code.</p>
+<p>Over time, this experience in my gems led me to these napkin math buckets that I’m slotting gem ideas into:</p>
+<table><tbody><tr><td><p><strong>&lt; 100</strong></p></td><td><p>Teeny, short and sweet. Ideally a lot of bang for our code buck.</p></td></tr><tr><td><p><strong>250-500</strong></p></td><td><p>Medium. There’s complexity in here.</p></td></tr><tr><td><p><strong>500-1,000</strong></p></td><td><p>Big-ish. The gem has to be really good and solve a meaty problem to warrant this.</p></td></tr><tr><td><p><strong>1,000+</strong></p></td><td><p>Big. The error margin is so wide here that it’s a whole other ball game.</p></td></tr></tbody></table>
+<p>Having a gem with many lines it’s fine, it’s when a gem exceeds what I think they’re worth that I get a little unsure of what’s going on in there.</p>
+<h3 id="takeaways">Takeaways</h3>
+<blockquote>
+<p>I have generally scrunched my nose at that idea [about lines-of-code rules], <strong>but</strong> hearing how you pair it with <em>conceptual</em> complexity made it click. It&rsquo;s not just golfing.</p>
+</blockquote>
+<p><em>— my friend</em> <a href="https://practical.computer"><em>Thomas Cannon</em></a> <em>after listening to the Dead Code episode.</em></p>
+<p>I’ve been finding these lines of code buckets useful, both when I’m writing a gem and trying to quantify what its worth is, but also when I’m deciding whether to depend on another person’s gem.</p>
+<p>It’s definitely pretty lossy&ndash;lines of code isn’t a 100% reliable metric: for example, they vary between different languages and even implementation styles.</p>
+<p>On the other hand, I’ve gotten enough useful and surprising insights in practice using this method &ndash; especially comparing testing libraries (let me know if you’re interested in a post about that) &ndash; that I’m going to keep using it!</p>
+<p>Still, I file this under “All models are wrong, some are useful”, and there’s been learning and clarity when I’ve applied this rough, napkin math lines-of-code constraint.</p>
+<p>Try using it and report back what you find,<br>Kasper</p>
+
+  </editable-text>
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>
