@@ -177,6 +177,8 @@ require\_relative "associated\_object/railtie" if defined?(Rails::Railtie)
 
 \`\`\`
 
+&nbsp;
+
 \- From [lib/active\_record/associated\_object.rb 1.0.0](https://github.com/kaspth/active_record-associated_object/blob/v1.0.0/lib/active_record/associated_object.rb)
 
 In another gem of mine, [Oaken](https://gem.coop/@kaspth/oaken), I’ve chosen a slightly larger scope where I’m focusing on making Rails apps dev and test data more maintainable but specifically with the concept of leveling up database seeds to do so. I could see that surface being worth up to 1000 lines of code.
@@ -185,7 +187,7 @@ Right now, however, Oaken 1.0.0 has 280 lines of code.
 
 Over time, this experience in my gems led me to these napkin math buckets that I’m slotting gem ideas into:
 
-<table><tbody><tr><td><p>&lt; 100</p></td><td><p>Teeny, short and sweet. Ideally a lot of bang for our code buck.</p></td></tr><tr><td><p>250-500</p></td><td><p>Medium, there’s complexity in here</p></td></tr><tr><td><p>500-1,000</p></td><td><p>Big-ish, the gem has to be really good and solve a meaty problem to warrant this.</p></td></tr><tr><td><p>1,000+</p></td><td><p>Big, the error margin is so wide here that it’s a whole other ball game.</p></td></tr></tbody></table>
+<table><tbody><tr><td><p><strong>&lt; 100</strong></p></td><td><p>Teeny, short and sweet. Ideally a lot of bang for our code buck.</p></td></tr><tr><td><p><strong>250-500</strong></p></td><td><p>Medium. There’s complexity in here.</p></td></tr><tr><td><p><strong>500-1,000</strong></p></td><td><p>Big-ish. The gem has to be really good and solve a meaty problem to warrant this.</p></td></tr><tr><td><p><strong>1,000+</strong></p></td><td><p>Big. The error margin is so wide here that it’s a whole other ball game.</p></td></tr></tbody></table>
 
 Having a gem with many lines it’s fine, it’s when a gem exceeds what I think they’re worth that I get a little unsure of what’s going on in there.
 
@@ -201,7 +203,7 @@ It’s definitely pretty lossy--lines of code isn’t a 100% reliable metric: fo
 
 On the other hand, I’ve gotten enough useful and surprising insights in practice using this method -- especially comparing testing libraries (let me know if you’re interested in a post about that) -- that I’m going to keep using it!
 
-Still, I file this under “All models are wrong, some are useful”, and there’s been learning and clarity when I’ve applied this rough napkin math lines of code constraint.
+Still, I file this under “All models are wrong, some are useful”, and there’s been learning and clarity when I’ve applied this rough, napkin math lines of code constraint.
 
 Try using it and report back what you find,
 
