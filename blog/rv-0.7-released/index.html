@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+<title>rv 0.7 is out</title>
+<link rel="canonical" href="/blog/rv-0.7-released/">
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="Spinel, the Ruby open source maintainers‘ co-op">
+
+      <link rel="stylesheet" href="/css/main.min.8793e56079e40dd7a4d3b719f6df28e06862b3ae24c666dee115a2201f41b805.css" integrity="sha256-h5PlYHnkDdek07cZ9t8o4Ghis64kxmbe4RWiIB9BuAU=" crossorigin="anonymous">
+
+
+        <script src="/js/main.f2979a93a325fecf9605263bd141398a311c8e23388ed7dcff74f92f7e632866.js" integrity="sha256-8peak6Ml/s&#43;WBSY70UE5ijEcjiM4jtfc/3T5L35jKGY=" crossorigin="anonymous" async></script>
+
+
+</head>
+<body>
+  <header>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+  <h1>
+    <a href="/" class="hero">
+      <img width="60" src="/img/gems.svg" alt="line art of two overlapping gemstones">
+      <img width="150" src="/img/spinel.svg" alt="Spinel">
+    </a>
+  </h1>
+  <p style="font-weight: bold; font-size: 0.8rem; margin-bottom: 0;">Cooperative est. July 2025</p>
+</div>
+
+  <nav>
+    <a href="/#tools">Tools</a>
+    <a href="/#team">Team</a>
+    <a href="/#background">Background</a>
+    <a href="/blog">Blog</a>
+  </nav>
+
+
+
+
+  </header>
+  <main>
+    
+<h1 data-editable="text" data-prop="title">rv 0.7 is out</h1>
+
+<div style="text-align: right">
+  
+  
+  <time datetime="2026-09-26T00:00:00&#43;00:00">September 26, 2026</time>
+</div>
+
+<section class="blog">
+  <editable-text data-prop="@content">
+    <p><code>rv</code> version 0.7 is released! We have three new features, and one significant fix.</p>
+<h3 id="jruby-support">JRuby support</h3>
+<p>One notable absence from our Ruby installer was JRuby. We started with a focus on pre-compiling MRI binaries, and as a result we were initially just trying to make sure that everything worked correctly there. Now that we have more confidence that our setup is working, we&rsquo;re very happy to add support for installing and managing versions of JRuby as well.</p>
+<p>JRuby is a great fit for our philosophy of installing Ruby and being able to use it in just a couple of seconds, without waiting for source tarballs to compile on your local machine. Thanks for the contribution, @afomera!</p>
+<h3 id="the-rv-fmt-command">The <code>rv fmt</code> command</h3>
+<p>Inspired by the opinionated, standardized, and extremely fast formatters provided by other tools, like <code>go fmt</code> and <code>cargo fmt</code>, we&rsquo;ve shipped an <code>rv fmt</code> command that can handle hundreds of files in a tiny fraction of a second. It doesn&rsquo;t need a background server running, and it can&rsquo;t be configured.</p>
+<p>The <code>rv fmt</code> command is powered by librubyfmt, the library version of <code>rubyfmt</code> from Stripe&rsquo;s Ruby tooling team. The most difficult part of using <code>rubyfmt</code> as a Ruby developer is getting the tool installed &ndash; most Ruby projects don&rsquo;t have a Rust and Cargo toolchain available, and it&rsquo;s a pain to maintain a script that downloads and installs the <code>rubyfmt</code> binary for every individual project.</p>
+<p>By putting <code>librubyfmt</code> into <code>rv</code>, we&rsquo;re hoping that Ruby developers everywhere will be able to format their code quickly and easily. It&rsquo;s so fast that you can reformat your code every time your editor saves a Ruby file, and now it doesn&rsquo;t require installing anything at all.</p>
+<h3 id="optional-gems-with-rvx---with">Optional gems with <code>rvx --with</code></h3>
+<p>While <code>rvx</code> is incredibly handy to use if you want to run a single Ruby CLI tool, some tools have optional dependencies. A great example is the <code>sequel</code> gem, which acts as a sort of general database swiss army knife. It doesn&rsquo;t require you to install any other gems to use it, but to connect to a Postgres database, you need the <code>pg</code> gem installed alongside the <code>sequel</code> gem.</p>
+<p>Until today, it wasn&rsquo;t possible to use <code>rvx sequel</code> and also install the <code>pg</code> gem. With this change, you can now use <code>rvx --with pg sequel</code> to get the exact gems you need, and allow Sequel to connect to a Posgres database. Thanks for contributing, @gilesbowkett!</p>
+<h3 id="fixed-auto-switching-in-powershell">Fixed auto-switching in PowerShell</h3>
+<p>Finally, an important bugfix. The PowerShell integration to enable automatic Ruby version switching, by following the <code>.ruby-version</code> file, had stopped working when we tried to expand it to more closely match the other shell integrations.</p>
+<p>We&rsquo;ve fixed the shell integration, tested everything out in PowerShell on both Windows and Mac, and added a test so that hopefully we can&rsquo;t break the PowerShell integration in that way again in the future. Thanks for the report, @ziggythehamster!</p>
+
+  </editable-text>
+</section>
+
+
+
+
+  </main>
+  <footer>
+    <footer>
+  <blockquote class="about-us">
+    <p>
+      At Spinel Cooperative, we're building <a href="https://rv.dev"><code>rv</code></a>, a very fast version and
+      package
+      manager for Ruby. Hire us to <a href="https://spinel.coop">multiply your team's productivity</a>.
+    </p>
+
+    <div>
+      Subscribe to the Spinel newsletter to hear about the latest on <a href="https://rv.dev"><code>rv</code></a> and our other open source tools, plus posts about developer productivity and links to other cool projects.
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/spinel" method="post"
+      class="embeddable-buttondown-form">
+      <input type="email" name="email" placeholder="you@example.com">
+      <input type="hidden" value="1" name="embed">
+      <input type="hidden" name="tag" value="website">
+      <input type="submit" value="Subscribe">
+    </form>
+  </blockquote>
+</footer>
+
+  </footer>
+</body>
+</html>
