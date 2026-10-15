@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-10-15T00:00:00-07:00
 title = "Help us grow the Gem Fellowship program"
 slug = "help-us-grow-the-gem-fellowship-program"
-draft = true
+draft = false
 +++
 We’re excited to help grow the Gem Fellowship program, which is entering its second year. <a href="https://gem.coop/updates/8/" title="Gem Fellowship 2027" target="_blank" rel="nofollow noopener">Learn more in the gem.coop announcement here</a>.
 
