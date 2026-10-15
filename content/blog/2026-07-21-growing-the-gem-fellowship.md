@@ -1,6 +1,6 @@
 +++
 _schema = "blog"
-date = 2026-07-22T00:00:00Z
+date = 2026-10-15T00:00:00-07:00
 title = "We’re growing the Gem Fellowship!"
 slug = "growing-the-gem-fellowship"
 draft = true
