@@ -3,7 +3,7 @@ _schema = "blog"
 date = 2026-09-23T00:00:00-07:00
 title = "Why you should check your gem's lines of code"
 slug = "why-you-should-check-your-gems-lines-of-code"
-draft = true
+draft = false
 +++
 Back in April while I was a [guest on the Dead Code podcast](https://shows.acast.com/dead-code/episodes/seeds-of-devastation-with-kasper-timm-hansen), I mentioned an idea I’d been brewing on for a while: that the number of lines of code is still a useful metric when you’re writing gems and evaluating whether you want to depend on them.
 
