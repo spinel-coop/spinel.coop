@@ -1,7 +1,6 @@
 +++
 title = 'Spinel Cooperative'
 date = 2023-01-01
-aliases = ["/retainers"]
 +++
 
 ## We make engineering teams more productive
